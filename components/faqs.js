@@ -8,7 +8,7 @@ export default function faqs({faqs}) {
       index+=1,
         <div className="faq" key={index}>
           <p className="text-break text-wrap" ><b>Q.</b> {faq.question}</p>
-          <p><b>A.</b>This is a test build we can't reply you.</p>
+          <p><b>A.</b>This is a test build we can&apos;t reply you.</p>
         </div>
       ))
     }
