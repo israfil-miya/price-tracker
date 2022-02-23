@@ -76,7 +76,7 @@ export default function Item_manage() {
     setNewPrice] = useState('');
   useEffect(() => {
     if (error) {
-      toast.error("Failed due to internal problem.")
+      toast.error("Failed due to server problem.")
       router.push("/item_manage/"+item_id)
     }
     if (success) {
