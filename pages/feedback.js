@@ -39,7 +39,7 @@ export default function Feedback() {
       toast.success(successMessage)
       router.push("/feedback")
     }
-  }, [error, errors, success, successMsg, rou])
+  }, [error, errors, success, successMsg, router])
   
   async function feedbackFormSubmitHandle(e)  {
     e.preventDefault();
