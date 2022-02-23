@@ -3,7 +3,6 @@ import {
   MongoDBAdapter
 } from "@next-auth/mongodb-adapter"
 import GithubProvider from "next-auth/providers/github";
-import FacebookProvider from "next-auth/providers/facebook";
 import DiscordProvider from "next-auth/providers/discord";
 import clientPromise from "../../../lib/mongodb"
 
@@ -18,21 +17,21 @@ export default NextAuth({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET
-    }),
     DiscordProvider({
-    clientId: process.env.DISCORD_CLIENT_ID,
-    clientSecret: process.env.DISCORD_CLIENT_SECRET
+      clientId: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET
     })
     // ...add more providers here
   ],
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({
+      user, account, profile, email, credentials
+    }) {
       return true
     },
-    async redirect({ url, baseUrl }) {
+    async redirect({
+      url, baseUrl
+    }) {
       return baseUrl;
     },
     async jwt(token, user, account, profile, isNewUser) {
@@ -41,11 +40,13 @@ export default NextAuth({
       }
       return Promise.resolve(token);
     },
-    async session({ session, user, token }) {
+    async session({
+      session, user, token
+    }) {
       session.user.uid = user.id;
       return Promise.resolve(session);
     }
-    
+
   },
   //debug: true,
   pages: {

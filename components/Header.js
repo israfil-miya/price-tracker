@@ -55,10 +55,9 @@ export default function Header(){
         <div>
         <span className="d-block text-reset nav-link mb-2">Login with:</span>
         <div className="btn-group" role="group">
-        <button onClick={()=>signIn("discord")} type="button" className="btn btn-sm btn-primary">Discord  <i className="bi ps-1 bi-discord"></i></button>
           <button onClick={()=>signIn("github")} type="button" className="btn btn-sm btn-dark">Github  <i className="bi ps-1 bi-github"></i></button>
-          <button onClick={()=>signIn("facebook")} type="button" className="btn btn-sm btn-primary">Facebook  <i className="bi ps-1 bi-facebook"></i></button>
-          
+        <button onClick={()=>signIn("discord")} type="button" className="btn btn-sm btn-primary">Discord  <i className="bi ps-1 bi-discord"></i></button>
+        
         </div> 
         </div>
 }
