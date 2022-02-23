@@ -159,7 +159,7 @@ export default function Dashboard({items}) {
       <Link href={"/item_manage/"+item._id}><a className="btn btn-outline-primary btn-sm p-2">Manage</a></Link>
       </td>
     </tr>
-        )) : <tr><td colSpan="8">You have no items in monitor, you can start adding items.</td></tr>
+        )) : <tr><td className="text-muted" colSpan="8">You have no items in monitor, you can start adding items.</td></tr>
         }
         
       

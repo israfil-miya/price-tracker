@@ -7,8 +7,8 @@ export default function faqs({faqs}) {
       faqs.map((faq, index) => (
       index+=1,
         <div className="faq" key={index}>
-          <p><b>Q.</b> {faq.question}</p>
-          <p><b>A.</b>Yes</p>
+          <p className="text-break text-wrap" ><b>Q.</b> {faq.question}</p>
+          <p><b>A.</b>Please be patient until we answer your question.</p>
         </div>
       ))
     }

@@ -17,7 +17,7 @@ export default function feedbacks({feedbacks}) {
               <img src={feedback.image} alt={`${feedback.name}'s Profile Picture`} width="60px" className="rounded-circle" />
             </div>
             <div className="comment-text w-100">
-              <h6 className="font-medium">{feedback.name}</h6> <span style={{fontSize: "15px"}}className="m-b-15 d-block">{feedback.message}</span>
+              <h6 className="font-medium">{feedback.name}</h6> <span style={{fontSize: "15px"}} className="m-b-15 text-break text-wrap d-block">{feedback.message}</span>
               <div className="comment-footer">
                 <span style={{fontSize: "14.5px"}} className="text-muted float-right">{moment(feedback.added_time).format('Do MMMM YYYY')}</span>
               </div>
