@@ -20,12 +20,12 @@ const Feedbacks = dynamic(() => import('../components/feedbacks'))
 
 
 export async function getServerSideProps(context) {
-  const res = await fetch('http://localhost:3000/api/faqs')
+  const res = await fetch('https://price-tracker-ivory.vercel.app/api/faqs')
   const data = await res.json();
   const datasreturn = JSON.parse(JSON.stringify(data.faqs))
   //console.log(datasreturn[0].question)
   
-  const res2 = await fetch('http://localhost:3000/api/feedbacks')
+  const res2 = await fetch('https://price-tracker-ivory.vercel.app/api/feedbacks')
   const data2 = await res2.json();
   const datasreturn2 = JSON.parse(JSON.stringify(data2.feedbacks))
   return {

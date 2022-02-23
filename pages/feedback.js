@@ -39,7 +39,7 @@ export default function Feedback() {
       toast.success(successMessage)
       router.push("/feedback")
     }
-  }, [error, errors, success, successMsg, router])
+  }, [error, errors, success, successMsg, rou])
   
   async function feedbackFormSubmitHandle(e)  {
     e.preventDefault();
@@ -49,7 +49,7 @@ export default function Feedback() {
       message,
       image
     };
-    const rawres = await fetch('http://localhost:3000/api/feedbacks', {
+    const rawres = await fetch('https://price-tracker-ivory.vercel.app/api/feedbacks', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -73,7 +73,7 @@ export default function Feedback() {
       User_ID: session.user?.uid,
       question
     };
-    const rawres = await fetch('http://localhost:3000/api/faqs', {
+    const rawres = await fetch('https://price-tracker-ivory.vercel.app/api/faqs', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

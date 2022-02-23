@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const rawres = await fetch('http://localhost:3000/api/items', {
+  const rawres = await fetch('https://price-tracker-ivory.vercel.app/api/items', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -93,7 +93,7 @@ export default function Dashboard({items}) {
       price_wanted,
       User_ID: session.user?.uid
     };
-    const rawres = await fetch('http://localhost:3000/api/items', {
+    const rawres = await fetch('https://price-tracker-ivory.vercel.app/api/items', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
