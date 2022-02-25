@@ -24,10 +24,4 @@ Built in JS (**NextJS**)
 - [ ] Make Script to Add More Sites
 - [ ] Add More Sites
 
-## Cautions
-
-1. Don't edit the source code.
-2. Don't distribut the source code (*It's not open source*)
-3. Use in private (*Locally*)
-
 ## ❤️🇧🇩❤️
