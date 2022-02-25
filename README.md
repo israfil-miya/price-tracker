@@ -11,8 +11,12 @@ Price-Tacker is a wide platform(*App, Website, Bots*) based app that can track y
 
 ## About this Branch
 
-Well, this Branch is for the **Website**<br/>
-Built in JS (**NextJS**)
+This Branch is for the **Website**<br/>
+Made using JS (**NextJS**)
+
+## Branches
+1. **[Website](https://github.com/GitPro10/price-tracker)**<br/>
+2. **[CLI Build](https://github.com/GitPro10/price-tracker/tree/CLI)**<br/>
 
 
 ## To Do
@@ -23,5 +27,6 @@ Built in JS (**NextJS**)
 - [ ] Make Telegram Bot Wrapper
 - [ ] Make Script to Add More Sites
 - [ ] Add More Sites
+
 
 ## ❤️🇧🇩❤️
