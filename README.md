@@ -9,12 +9,13 @@ Price-Tacker is a wide platform(*App, Website, Bots*) based app that can track y
 >**You need more to get impressed?**<br/>
 *—    If yes then let me tell you, you can customize many things like Database Connection, Logging Emails and Check Price Interval Time too! 😉*
 
-## About this Branch
+## Branch
 
+### About this Branch
 This Branch is for the **Website**<br/>
 Made using JS (**NextJS**)
 
-## Branches
+### All Branches
 1. **[Website](https://github.com/GitPro10/price-tracker)**<br/>
 2. **[CLI Build](https://github.com/GitPro10/price-tracker/tree/CLI)**<br/>
 
