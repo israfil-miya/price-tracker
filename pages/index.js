@@ -157,7 +157,7 @@ export default function Index({ faqs, feedbacks }) {
           {`
             h2 {
               font-weight: thin;
-              font-size: 19px;
+              font-size: 17px;
             }
             .text-justify {
               text-align: justify;
