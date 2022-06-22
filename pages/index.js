@@ -71,7 +71,7 @@ export default function Index({ faqs, feedbacks }) {
     <>
       <ToastContainer />
 
-      <div className="container my-4 p-2 bg-light">
+      <div className="overflow-hidden container my-4 p-2 bg-light">
         <div className="d-flex mt-4 flex-column justify-content-center align-items-center">
           <Image
             layout="fixed"
