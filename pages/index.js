@@ -102,9 +102,11 @@ export default function Index({ faqs, feedbacks }) {
               </Link>
             </span>
           ) : null}
-          <p className="px-3 py-2 mt-5 bg-warning rounded border border-1">
-            About Me
-          </p>
+          <h2>
+            <p className="px-3 py-2 mt-5 bg-warning rounded border border-1">
+              About Me
+            </p>
+          </h2>
           <div className="about-me-text px-3 text-wrap">
             Hi, My name is Jubayer ahmed. I am from Bangladesh specifically from
             Dhaka, Bangladesh. I am an young boy, currently doing my study, yes
@@ -113,9 +115,11 @@ export default function Index({ faqs, feedbacks }) {
             send me a friend request on my Facebook, if you need help.
             That&apos;s it for now.
           </div>
-          <p className="px-3 py-2 mt-3 bg-warning rounded border border-1">
-            About &quot;Price Tracker&quot;
-          </p>
+          <h2>
+            <p className="px-3 py-2 mt-3 bg-warning rounded border border-1">
+              About &quot;Price Tracker&quot;
+            </p>
+          </h2>
           <div className="about-prctkr-text px-3 text-wrap">
             An amazing website that can track the prices of your favourite items
             from your favourite e-shops like Amazon, Walmart, Target etc. for
@@ -128,18 +132,22 @@ export default function Index({ faqs, feedbacks }) {
         </div>
 
         <div className="text-center">
-          <p className="px-3 d-inline-block text-center py-2 mt-3 bg-warning rounded border border-1">
-            Top FAQs
-          </p>
+          <h2>
+            <p className="px-3 d-inline-block text-center py-2 mt-3 bg-warning rounded border border-1">
+              Top FAQs
+            </p>
+          </h2>
         </div>
         <div className="faqs px-3" ref={observe}>
           {inView && <Faqs faqs={faqs} />}
         </div>
 
         <div className="text-center">
-          <p className="px-3 d-inline-block text-center py-2 mt-3 bg-warning rounded border border-1">
-            Top Feedbacks
-          </p>
+          <h2>
+            <p className="px-3 d-inline-block text-center py-2 mt-3 bg-warning rounded border border-1">
+              Top Feedbacks
+            </p>
+          </h2>
         </div>
         <div className="feedbacks" ref={observe}>
           {inView && <Feedbacks feedbacks={feedbacks} />}
@@ -147,6 +155,10 @@ export default function Index({ faqs, feedbacks }) {
 
         <style jsx>
           {`
+            h2 {
+              font-weight: thin;
+              font-size: 19px;
+            }
             .text-justify {
               text-align: justify;
             }

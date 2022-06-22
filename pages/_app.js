@@ -25,7 +25,7 @@ export default function MyApp({
         />
         <meta
           name="keywords"
-          content="price tracker, track items price, track prices for free, free price tracker"
+          content="price, tracker, track, items, price, track, prices, for, free, free, price, tracker, best, free, price, tracker, jubayer, ahmed"
         />
         <meta name="robots" content="index,follow" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -33,7 +33,9 @@ export default function MyApp({
         <meta name="revisit-after" content="2 days" />
         <meta name="author" content="Israfil Miya" />
         <link rel="shortcut icon" href="/favicon.png" />
-        <title>Price Tracker</title>
+        <title>
+          Price Tracker – Start tracking your favourite products from now!
+        </title>
       </Head>
       <NextNProgress
         color="rgb(238,61,0)"

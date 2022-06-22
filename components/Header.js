@@ -4,11 +4,13 @@ export default function Header() {
   const { data: session, status } = useSession()
   return (
     <>
-      <nav className="navbar shadow-sm navbar-expand-lg navbar-light bg-light">
+      <nav className="p-0 m-0 navbar shadow-sm navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link href="/">
             <a className="navbar-brand">
-              <span className="brandName ps-2 fw-bold">PriceTracker</span>
+              <h1>
+                <span className="brandName">PriceTracker</span>
+              </h1>
             </a>
           </Link>
           <button
@@ -125,7 +127,7 @@ export default function Header() {
           box-shadow: none;
         }
         .brandName {
-          font-size: 21px;
+          font-size: 22px;
           font-family: 'Eczar', serif;
         }
         .navbar-collapse {

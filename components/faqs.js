@@ -13,6 +13,7 @@ export default function faqs({ faqs }) {
               <p>
                 <b>A.</b>No answer right now.
               </p>
+              <br />
             </div>
           )
         ),
