@@ -5,6 +5,6 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
   // Extract info from data-bs-* attributes
   var recipient = button.getAttribute('data-bs-itemId')
   var modalTitle = exampleModal.querySelector('.modal-title')
-  
+
   modalTitle.innerHTML = 'Edit values of <br/>Item ID: ' + recipient
 })

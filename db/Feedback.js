@@ -4,24 +4,25 @@ import mongoose from 'mongoose'
 const FeedbackSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
-},
+    required: true,
+  },
   User_ID: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   message: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
   },
   added_time: {
-    type : Date,
-    default: Date.now
-  }
+    type: Date,
+    default: Date.now,
+  },
 })
 
-module.exports = mongoose.models.Feedback || mongoose.model('Feedback', FeedbackSchema)
+module.exports =
+  mongoose.models.Feedback || mongoose.model('Feedback', FeedbackSchema)

@@ -2,18 +2,17 @@
 
 html,
 body {
-  
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Poppins', sans-serif;
 }
 #container {
-   min-height:100%;
-   position:relative;
+  min-height: 100%;
+  position: relative;
 }
 a {
-  color: rgb(238,61,0);
+  color: rgb(238, 61, 0);
   text-decoration: none;
   cursor: pointer;
 }
@@ -26,5 +25,5 @@ footer {
   font-size: 13px;
   position: absolute;
   bottom: 0;
-  width: 100%;;
+  width: 100%;
 }

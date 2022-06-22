@@ -4,17 +4,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --check --ignore-path .gitignore .",
+    "format:fix": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
     "@next-auth/mongodb-adapter": "^1.0.1",
-    "all": "^0.0.0",
     "moment": "^2.29.2",
     "mongodb": "^4.3.1",
     "mongoose": "^6.2.1",
     "next": "^12.1.0",
     "next-auth": "^4.3.3",
     "nextjs-progressbar": "^0.0.13",
+    "prettier": "^2.7.1",
     "react": "17.0.2",
     "react-cool-inview": "^2.0.9",
     "react-dom": "17.0.2",
