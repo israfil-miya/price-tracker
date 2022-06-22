@@ -21,7 +21,7 @@ export default function MyApp({
         <meta name="title" content="Price Tracker" />
         <meta
           name="description"
-          content="An amazing website that can track the prices of your favourite items from your favourite e-shops like Amazon, Walmart, Target etc. for free of cost also it's an open source Price Tracker!"
+          content="An amazing price tracker website that tracks the prices of your favourite items from your favourite e-shops like Amazon, Walmart, Target etc. for free of cost!"
         />
         <meta
           name="keywords"
