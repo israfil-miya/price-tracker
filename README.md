@@ -6,17 +6,9 @@
 
 Price-Tacker is a wide platform(_App, Website, Bots_) based app that can track your favourite items from your various favorite E-Shop websites like Amazon, Ebags etc. This can also track Apps and Games from Google Play Store, Stream, Nintendo etc.<br/><br/>
 
-<<<<<<< HEAD
-
-> **Not exciting enough to use this?**<br/> _— Well it also send you emails whenever price goes down._<br/><br/>
-
-> # **You need more to get impressed?**<br/> _— If yes then let me tell you, you can customize many things like Database Connection, Logging Emails and Check Price Interval Time too! 😉_
->
 > **Not exciting enough to use this?**<br/> _— Well it also send you emails whenever price goes down._<br/><br/>
 
 > **You need more to get impressed?**<br/> _— If yes then let me tell you, you can customize many things like Database Connection, Logging Emails and Check Price Interval Time too! 😉_
->
-> > > > > > > refs/remotes/origin/main
 
 ## Branch
 
@@ -32,11 +24,11 @@ Made using JS (**NextJS**)
 
 ## To Do
 
-- [x] ~~Make Shell Script for One Command Installation and Setup~~
-- [x] ~~Make Web Version~~
+- [x] Make Shell Script for One Command Installation and Setup
+- [x] Make Web Version
 - [ ] Make Discord Bot Wrapper
 - [ ] Make Telegram Bot Wrapper
 - [ ] Make Script to Add More Sites
 - [ ] Add More Sites
 
-## ❤️🇧🇩❤️
+## Made in Bangladesh
