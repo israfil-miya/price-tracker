@@ -18,6 +18,10 @@ export default function MyApp({
       />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="google-site-verification"
+          content="N5yaBrkTsit4CReULYsd6t2ZcIOni8qf011JimffZAg"
+        />
         <meta name="title" content="Price Tracker" />
         <meta
           name="description"

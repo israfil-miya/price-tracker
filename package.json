@@ -5,8 +5,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --check --ignore-path .gitignore .",
-    "format:fix": "prettier --write --ignore-path .gitignore ."
+    "format": "prettier --check --ignore-path .gitignore README.md .",
+    "format:fix": "prettier --write --ignore-path .gitignore README.md ."
   },
   "dependencies": {
     "@next-auth/mongodb-adapter": "^1.0.1",
