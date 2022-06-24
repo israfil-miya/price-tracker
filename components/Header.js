@@ -4,7 +4,7 @@ export default function Header() {
   const { data: session, status } = useSession()
   return (
     <>
-      <nav className="p-0 m-0 navbar shadow-sm navbar-expand-lg navbar-light bg-light">
+      <nav className="p-0 m-0 navbar shadow-sm navbar-expand-sm navbar-light bg-light">
         <div className="container-fluid">
           <Link href="/">
             <a className="navbar-brand">
@@ -86,14 +86,13 @@ export default function Header() {
               </li>
             </ul>
             {session ? (
-              <button style={{margin-left: "5px"}}
-                onClick={() => signOut()}
+              <button onClick={() => signOut()}
                 className="btn btn-danger btn-sm"
               >
                 Logout
               </button>
             ) : (
-              <div style={{margin-left: "5px"}}>
+              <div>
                 <span className="d-block text-reset nav-link mb-2">
                   Login with:
                 </span>
