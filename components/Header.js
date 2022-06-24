@@ -4,7 +4,7 @@ export default function Header() {
   const { data: session, status } = useSession()
   return (
     <>
-      <nav className="p-0 m-0 navbar shadow-sm navbar-expand-sm navbar-light bg-light">
+      <nav className="p-0 m-0 navbar shadow-sm navbar-light bg-light">
         <div className="container-fluid">
           <Link href="/">
             <a className="navbar-brand">
