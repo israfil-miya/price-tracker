@@ -86,14 +86,14 @@ export default function Header() {
               </li>
             </ul>
             {session ? (
-              <button
+              <button style={{margin-left: "5px"}}
                 onClick={() => signOut()}
                 className="btn btn-danger btn-sm"
               >
                 Logout
               </button>
             ) : (
-              <div>
+              <div style={{margin-left: "5px"}}>
                 <span className="d-block text-reset nav-link mb-2">
                   Login with:
                 </span>
