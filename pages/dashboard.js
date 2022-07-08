@@ -224,7 +224,7 @@ export default function Dashboard({ items }) {
             )}
           </tbody>
         </table>
-        
+
         <div className="text-center">
           <p className="px-3 d-inline-block text-center py-2 mt-2 bg-warning rounded border border-1">
             Add New Item
