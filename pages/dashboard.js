@@ -50,6 +50,8 @@ export default function Dashboard({ items }) {
   const [website, setWebsite] = useState('')
   const [item_uri, setUri] = useState('')
   const [price_wanted, setPrice] = useState('')
+  const [log_email, setLogEmail] = useState(session.user.email)
+  const [currency, setCurrency] = useState('USD')
 
   const errors = {
     serverError: 'Failed due to server error.',
@@ -57,7 +59,7 @@ export default function Dashboard({ items }) {
   }
   const successMsg = {
     updated: 'Updated previous data.',
-    createdNew: 'Form submitted successfully.',
+    createdNew: 'New item added successfully.',
     default: 'Form submitted.',
   }
   useEffect(() => {
@@ -109,6 +111,35 @@ export default function Dashboard({ items }) {
       router.push('/dashboard?success=' + datasreturn.resp.message)
     }
   }
+  async function configSubmitHandle(e) {
+    e.preventDefault()
+    const data = {
+      currency,
+      monitor_email: log_email,
+      User_ID: session.user?.uid,
+    }
+    const rawres = await fetch(
+      'https://price-tracker-ivory.vercel.app/api/user',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      },
+    )
+    const res = await rawres.json()
+    const datasreturn = JSON.parse(JSON.stringify(res))
+    console.log(datasreturn)
+
+    if (datasreturn.resp.status == 'error') {
+      router.push('/dashboard?error=' + datasreturn.resp.message)
+    }
+    if (datasreturn.resp.status == 'success') {
+      router.push('/dashboard?success=' + datasreturn.resp.message)
+    }
+  }
   return (
     <div>
       <ToastContainer />
@@ -127,7 +158,7 @@ export default function Dashboard({ items }) {
               <th scope="col">Name</th>
               <th scope="col">Website</th>
               <th scope="col">URI</th>
-              <th scope="col">Price</th>
+              <th scope="col">Wanted Price</th>
               <th scope="col">Current Price</th>
               <th scope="col">Manage</th>
             </tr>
@@ -193,6 +224,7 @@ export default function Dashboard({ items }) {
             )}
           </tbody>
         </table>
+
         <div className="text-center">
           <p className="px-3 d-inline-block text-center py-2 mt-2 bg-warning rounded border border-1">
             Add New Item
@@ -216,7 +248,7 @@ export default function Dashboard({ items }) {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Item&apos;s URI/Link </label>
+            <label className="form-label">Item&apos;s URI</label>
             <input
               onChange={(e) => setUri(e.target.value)}
               type="text"
@@ -231,6 +263,32 @@ export default function Dashboard({ items }) {
               type="number"
               className="form-control"
               required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+        <div className="text-center">
+          <p className="px-3 d-inline-block text-center py-2 mt-2 bg-warning rounded border border-1">
+            Configurations
+          </p>
+        </div>
+        <form onSubmit={configSubmitHandle}>
+          <div className="mb-3">
+            <label className="form-label">Logging Email</label>
+            <input
+              onChange={(e) => setLogEmail(e.target.value)}
+              type="text"
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Preferred Currency Code</label>
+            <input
+              onChange={(e) => setCurrency(e.target.value)}
+              type="text"
+              className="form-control"
             />
           </div>
           <button type="submit" className="btn btn-primary">

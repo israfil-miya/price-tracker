@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 const ItemSchema = new mongoose.Schema({
   item_name: {
     type: String,
-    default: ""
+    default: '',
   },
   price_wanted: {
     type: Number,
@@ -15,7 +15,7 @@ const ItemSchema = new mongoose.Schema({
   },
   website: {
     type: String,
-    default: ""
+    default: '',
   },
   item_uri: {
     type: String,

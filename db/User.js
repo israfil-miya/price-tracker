@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
   },
   currency: {
     type: String,
-    default: "USD",
+    default: 'USD',
   },
   monitor_email: {
     type: String,

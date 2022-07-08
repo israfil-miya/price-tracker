@@ -86,7 +86,8 @@ export default function Header() {
               </li>
             </ul>
             {session ? (
-              <button onClick={() => signOut()}
+              <button
+                onClick={() => signOut()}
                 className="btn btn-danger btn-sm"
               >
                 Logout
