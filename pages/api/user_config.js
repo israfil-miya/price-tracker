@@ -2,7 +2,7 @@ import dbConnect from '../../db/dbConnect'
 dbConnect()
 import User from '../../db/User'
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   const data = req.body
   const {
     method
@@ -14,7 +14,7 @@ export default async (req, res) => {
       resp.monitor_email = data.monitor_email
       resp.currency = data.currency
       var newData = await resp.save()
-
+      console.log(newData)
       res.status(201).json({
         success: true,
         status: 'success',
