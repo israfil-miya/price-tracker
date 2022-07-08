@@ -64,13 +64,13 @@ export default function Item_manage() {
       toast.error('Failed due to server problem.', {
         toastId: 'error',
       })
-      router.push('/item_manage/' + item_id)
+      router.push('/manage-item/' + item_id)
     }
     if (success) {
       toast.success('Data updated successfully.', {
         toastId: 'success',
       })
-      router.push('/item_manage/' + item_id)
+      router.push('/manage-item/' + item_id)
     }
   }, [error, success, router, item_id])
 
@@ -93,7 +93,7 @@ export default function Item_manage() {
     console.log(datasreturn)
 
     if (datasreturn.resp.status == 'error') {
-      router.push('/item_manage/' + item_id + '/?error=true')
+      router.push('/manage-item/' + item_id + '/?error=true')
     }
     if (datasreturn.resp.status == 'success') {
       router.push('/dashboard')
@@ -124,10 +124,10 @@ export default function Item_manage() {
     console.log(datasreturn)
 
     if (datasreturn.resp.status == 'error') {
-      router.push('/item_manage/' + item_id + '/?error=true')
+      router.push('/manage-item/' + item_id + '/?error=true')
     }
     if (datasreturn.resp.status == 'success') {
-      router.push('/item_manage/' + item_id + '/?success=true')
+      router.push('/manage-item/' + item_id + '/?success=true')
     }
   }
   return (

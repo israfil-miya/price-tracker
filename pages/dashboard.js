@@ -119,7 +119,7 @@ export default function Dashboard({ items }) {
       User_ID: session.user?.uid,
     }
     const rawres = await fetch(
-      'https://price-tracker-ivory.vercel.app/api/user',
+      'https://price-tracker-ivory.vercel.app/api/user_config',
       {
         method: 'POST',
         headers: {
@@ -205,7 +205,7 @@ export default function Dashboard({ items }) {
                       <td>{item.price_wanted}</td>
                       <td>{item.curr_price}</td>
                       <td>
-                        <Link href={'/item_manage/' + item._id}>
+                        <Link href={'/manage-item/' + item._id}>
                           <a className="btn btn-outline-primary btn-sm p-2">
                             Manage
                           </a>
@@ -224,7 +224,7 @@ export default function Dashboard({ items }) {
             )}
           </tbody>
         </table>
-
+        
         <div className="text-center">
           <p className="px-3 d-inline-block text-center py-2 mt-2 bg-warning rounded border border-1">
             Add New Item
