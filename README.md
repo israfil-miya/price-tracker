@@ -22,13 +22,12 @@ Made using JS (**NextJS**)
 1. **[Website](https://github.com/GitPro10/price-tracker)**<br/>
 2. **[CLI Build](https://github.com/GitPro10/price-tracker/tree/CLI)**<br/>
 
-## To Do
+## Tasks
 
-- [x] Make Shell Script for One Command Installation and Setup
-- [x] Make Web Version
-- [ ] Make Discord Bot Wrapper
-- [ ] Make Telegram Bot Wrapper
-- [ ] Make Script to Add More Sites
-- [ ] Add More Sites
+- [x] GUI (Website)
+- [x] Monitoring engine
+- [x] A NPM Package (eshop-scraper)
+- [ ] Discord Bot
+- [ ] Telegram Bot
 
 ## Made in Bangladesh
