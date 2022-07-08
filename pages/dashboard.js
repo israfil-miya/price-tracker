@@ -50,8 +50,8 @@ export default function Dashboard({ items }) {
   const [website, setWebsite] = useState('')
   const [item_uri, setUri] = useState('')
   const [price_wanted, setPrice] = useState('')
-  const [log_email, setLogEmail] = useState('')
-  const [currency, setCurrency] = useState("USD")
+  const [log_email, setLogEmail] = useState(session.user.email)
+  const [currency, setCurrency] = useState('')
 
   const errors = {
     serverError: 'Failed due to server error.',

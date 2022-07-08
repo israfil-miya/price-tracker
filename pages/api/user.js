@@ -4,6 +4,7 @@ import User from '../../db/User'
 
 export default async (req, res) => {
   const data = req.body
+  console.log(data)
   try {
     var resp = await User.findById(data.User_ID)
     resp.monitor_email = data.monitor_email
