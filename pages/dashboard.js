@@ -205,7 +205,6 @@ export default function Dashboard({ items }) {
               onChange={(e) => setName(e.target.value)}
               type="text"
               className="form-control"
-              required
             />
           </div>
           <div className="mb-3">
@@ -214,7 +213,6 @@ export default function Dashboard({ items }) {
               onChange={(e) => setWebsite(e.target.value)}
               type="text"
               className="form-control"
-              required
             />
           </div>
           <div className="mb-3">
