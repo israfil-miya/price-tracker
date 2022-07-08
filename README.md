@@ -22,9 +22,9 @@ Made using JS (**NextJS**)
 
 ## Tasks
 
-- [x] GUI (Website)
+- [x] GUI ([Website](https://price-tracker-ivory.vercel.app/))
 - [x] Monitoring engine
-- [x] A NPM Package (eshop-scraper)
+- [x] A NPM Package ([eshop-scraper](https://npm.io/package/eshop-scraper))
 - [ ] Discord Bot
 - [ ] Telegram Bot
 
