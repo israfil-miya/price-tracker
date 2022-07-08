@@ -1,0 +1,18 @@
+{
+  "name": "price-tracker",
+  "version": "1.0",
+  "description": "price tracker monitor and email sending engine",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "monitor": "node ."
+  },
+  "author": "Jubayer",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "eshop-scraper": "^1.2.1",
+    "mongoose": "^5.13.14",
+    "nodemailer": "^6.6.3"
+  }
+}
