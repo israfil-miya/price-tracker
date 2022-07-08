@@ -36,7 +36,7 @@ export default NextAuth({
     },
     async session({ session, user, token }) {
       session.user.uid = user.id
-      session.user.email = user.email
+      // session.user.email = user.email
       return Promise.resolve(session)
     },
   },

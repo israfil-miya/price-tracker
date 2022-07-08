@@ -50,8 +50,8 @@ export default function Dashboard({ items }) {
   const [website, setWebsite] = useState('')
   const [item_uri, setUri] = useState('')
   const [price_wanted, setPrice] = useState('')
-  const [log_email, setLogEmail] = useState(session.user.email)
-  const [currency, setCurrency] = useState('USD')
+  const [log_email, setLogEmail] = useState('')
+  const [currency, setCurrency] = useState("USD")
 
   const errors = {
     serverError: 'Failed due to server error.',
@@ -224,7 +224,7 @@ export default function Dashboard({ items }) {
             )}
           </tbody>
         </table>
-
+        
         <div className="text-center">
           <p className="px-3 d-inline-block text-center py-2 mt-2 bg-warning rounded border border-1">
             Add New Item
