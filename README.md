@@ -8,8 +8,6 @@ Price-Tacker is a free service that can track your favourite items from your var
 
 > **Not exciting enough to use this?**<br/> _— Well it also send you emails whenever price goes down._<br/><br/>
 
-> **You need more to get impressed?**<br/> _— If yes then let me tell you, you can customize many things like Database Connection, Logging Emails and Check Price Interval Time too! 😉_
-
 ## Branch
 
 ### About this Branch
