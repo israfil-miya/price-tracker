@@ -40,6 +40,15 @@ export async function getServerSideProps(context) {
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
   console.log(datasreturn)
+  
+  
+  // Delete this
+datasreturn2 = {
+  monitor_email: "kayesmiya100@gmail.com",
+  currency: "EUR"
+}
+  
+  
   return {
     props: {
       session,
