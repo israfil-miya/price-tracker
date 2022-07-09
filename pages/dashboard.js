@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
     },
   )
   const res2 = await rawres2.json()
-  const datasreturn2 = JSON.parse(JSON.stringify(res2))
+  const datasreturn2 = JSON.parse(JSON.stringify(res2.configs))
   console.log(datasreturn2)
 
   const rawres = await fetch(
