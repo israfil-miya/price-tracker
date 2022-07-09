@@ -19,14 +19,14 @@ export async function getServerSideProps(context) {
       },
     }
   }
-  
+
   const res2 = await fetch(
-    'https://price-tracker-ivory.vercel.app/api/user_confg'
+    'https://price-tracker-ivory.vercel.app/api/user_confg',
   )
   const data2 = await res2.json()
   const datasreturn2 = JSON.parse(JSON.stringify(data2))
   console.log(datasreturn2)
-  
+
   const rawres = await fetch(
     'https://price-tracker-ivory.vercel.app/api/items',
     {
@@ -41,8 +41,6 @@ export async function getServerSideProps(context) {
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
   console.log(datasreturn)
-
- 
 
   return {
     props: {
@@ -302,7 +300,9 @@ export default function Dashboard({ items, configs }) {
           <div className="mb-3">
             <label className="form-label">Logging Email</label>
             <input
-              defaultValue={configs ? configs.monitor_email : session.user.email}
+              defaultValue={
+                configs ? configs.monitor_email : session.user.email
+              }
               onChange={(e) => setLogEmail(e.target.value)}
               type="text"
               className="form-control"
