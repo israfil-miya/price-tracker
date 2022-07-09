@@ -18,8 +18,10 @@ export async function getServerSideProps(context) {
         permanent: false,
       },
     }
-  
-  const res = await fetch('https://price-tracker-ivory.vercel.app/api/user_confg')
+  }
+  const res = await fetch(
+    'https://price-tracker-ivory.vercel.app/api/user_confg',
+  )
   const data = await res.json()
   const datasreturn2 = JSON.parse(JSON.stringify(data.configs))
 
@@ -41,11 +43,11 @@ export async function getServerSideProps(context) {
     props: {
       session,
       items: datasreturn,
-      configs: datasreturn2
+      configs: datasreturn2,
     },
   }
 }
-export default function Dashboard({ items, configs}) {
+export default function Dashboard({ items, configs }) {
   const clipboard = useClipboard()
   const { data: session } = useSession()
   const router = useRouter()
@@ -55,7 +57,7 @@ export default function Dashboard({ items, configs}) {
   const [item_uri, setUri] = useState('')
   const [price_wanted, setPrice] = useState('')
   const [log_email, setLogEmail] = useState(session.user.email)
-  const [currency, setCurrency] = useState("USD")
+  const [currency, setCurrency] = useState('USD')
 
   const errors = {
     serverError: 'Failed due to server error.',
@@ -228,7 +230,7 @@ export default function Dashboard({ items, configs}) {
             )}
           </tbody>
         </table>
-        
+
         <div className="text-center">
           <p className="px-3 d-inline-block text-center py-2 mt-2 bg-warning rounded border border-1">
             Add New Item
@@ -281,7 +283,8 @@ export default function Dashboard({ items, configs}) {
         <form onSubmit={configSubmitHandle}>
           <div className="mb-3">
             <label className="form-label">Logging Email</label>
-            <input value={configs ? configs.currency : "USD"}
+            <input
+              value={configs ? configs.currency : 'USD'}
               onChange={(e) => setLogEmail(e.target.value)}
               type="text"
               className="form-control"
@@ -289,7 +292,8 @@ export default function Dashboard({ items, configs}) {
           </div>
           <div className="mb-3">
             <label className="form-label">Preferred Currency Code</label>
-            <input value={configs ? configs.monitor_email : session.user.email}
+            <input
+              value={configs ? configs.monitor_email : session.user.email}
               onChange={(e) => setCurrency(e.target.value)}
               type="text"
               className="form-control"
