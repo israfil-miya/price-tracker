@@ -14,10 +14,9 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default async function handler(req, res, {
-  session
-}) {
-  //const session = await getSession({ req })
+export default async function handler(req, res, props) {
+  console.log(props.session)
+  const session = await getSession({ req })
   console.log(session)
   /*
   const data = req.body
@@ -55,7 +54,7 @@ export default async function handler(req, res, {
   */
 }
 
-
+/*
   export default async (req, res) => {
     const data = req.body
     const {
@@ -143,3 +142,4 @@ export default async function handler(req, res, {
       break
     }
   }
+  */
