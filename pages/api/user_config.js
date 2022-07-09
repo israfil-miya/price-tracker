@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   const session = await getSession({
     req,
   })
-
   const data = req.body
   const { method } = req
 
@@ -16,7 +15,7 @@ export default async function handler(req, res) {
       if (!data.getdata) {
         try {
           var resp = await User.findById(data.User_ID)
-          resp.monitor_email = data.monitor_email
+          resp.monitor_email = data.monitor_email || session.user.email
           resp.currency = data.currency
           var newData = await resp.save()
           res.status(201).json({

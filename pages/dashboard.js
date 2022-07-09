@@ -303,7 +303,7 @@ export default function Dashboard({ items, configs }) {
             <label className="form-label">Logging Email</label>
             <input
               defaultValue={
-                configs ? configs.monitor_email : session.user.email
+                (configs.monitor_email && configs.monitor_email!="" ? configs.monitor_email : session.user.email
               }
               onChange={(e) => setLogEmail(e.target.value)}
               type="text"
@@ -313,7 +313,7 @@ export default function Dashboard({ items, configs }) {
           <div className="mb-3">
             <label className="form-label">Preferred Currency Code</label>
             <input
-              defaultValue={configs ? configs.currency : 'USD'}
+              defaultValue={configs.currency && configs.currency!="" ? configs.currency : 'USD'}
               onChange={(e) => setCurrency(e.target.value)}
               type="text"
               className="form-control"
