@@ -19,12 +19,13 @@ export async function getServerSideProps(context) {
       },
     }
   }
+  /*
   const res2 = await fetch(
     'https://price-tracker-ivory.vercel.app/api/user_confg',
   )
   const data2 = await res2.json()
   const datasreturn2 = JSON.parse(JSON.stringify(data2.configs))
-
+*/
   const rawres = await fetch(
     'https://price-tracker-ivory.vercel.app/api/items',
     {
