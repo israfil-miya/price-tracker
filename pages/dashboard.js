@@ -41,21 +41,23 @@ export async function getServerSideProps(context) {
   const datasreturn = JSON.parse(JSON.stringify(res))
   console.log(datasreturn)
 
-  // Delete this
-  datasreturn2 = {
-    monitor_email: 'kayesmiya100@gmail.com',
-    currency: 'EUR',
-  }
+ 
 
   return {
     props: {
       session,
       items: datasreturn,
-      configs: datasreturn2,
+      //configs: datasreturn2,
     },
   }
 }
-export default function Dashboard({ items, configs }) {
+export default function Dashboard({ items }) {
+  
+  const configs = {
+    monitor_email: 'kayesmiya100@gmail.com',
+    currency: 'EUR',
+  }
+  
   const clipboard = useClipboard()
   const { data: session } = useSession()
   const router = useRouter()
