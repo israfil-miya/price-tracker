@@ -19,13 +19,14 @@ export async function getServerSideProps(context) {
       },
     }
   }
-  /*
+  
   const res2 = await fetch(
-    'https://price-tracker-ivory.vercel.app/api/user_confg',
+    'https://price-tracker-ivory.vercel.app/api/user_confg'
   )
   const data2 = await res2.json()
-  const datasreturn2 = JSON.parse(JSON.stringify(data2.configs))
-*/
+  const datasreturn2 = JSON.parse(JSON.stringify(data2))
+  console.log(datasreturn2)
+  
   const rawres = await fetch(
     'https://price-tracker-ivory.vercel.app/api/items',
     {
@@ -47,17 +48,17 @@ export async function getServerSideProps(context) {
     props: {
       session,
       items: datasreturn,
-      //configs: datasreturn2,
+      configs: datasreturn2,
     },
   }
 }
-export default function Dashboard({ items }) {
-  
+export default function Dashboard({ items, configs }) {
+  /*
   const configs = {
     monitor_email: 'kayesmiya100@gmail.com',
     currency: 'EUR',
   }
-  
+  */
   const clipboard = useClipboard()
   const { data: session } = useSession()
   const router = useRouter()
@@ -128,6 +129,11 @@ export default function Dashboard({ items }) {
     if (datasreturn.resp.status == 'success') {
       router.push('/dashboard?success=' + datasreturn.resp.message)
     }
+    // reset input fields
+    setName('')
+    setUri('')
+    setWebsite('')
+    setPrice('')
   }
   async function configSubmitHandle(e) {
     e.preventDefault()
