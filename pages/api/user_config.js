@@ -2,7 +2,7 @@ import dbConnect from '../../db/dbConnect'
 dbConnect()
 import User from '../../db/User'
 import { getSession } from 'next-auth/react'
-
+/*
 export async function getServerSideProps(context) {
   const session = await getSession(context)
   return {
@@ -11,11 +11,11 @@ export async function getServerSideProps(context) {
     },
   }
 }
-
-export default async function handler(req, res, props) {
-  console.log(props.session)
+*/
+export default async function handler(req, res) {
+  //console.log(props.session)
   const session = await getSession({ req })
-  console.log(session)
+  res.status(201).json({session})
   /*
   const data = req.body
   const {
