@@ -40,15 +40,13 @@ export async function getServerSideProps(context) {
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
   console.log(datasreturn)
-  
-  
+
   // Delete this
-datasreturn2 = {
-  monitor_email: "kayesmiya100@gmail.com",
-  currency: "EUR"
-}
-  
-  
+  datasreturn2 = {
+    monitor_email: 'kayesmiya100@gmail.com',
+    currency: 'EUR',
+  }
+
   return {
     props: {
       session,
@@ -71,11 +69,13 @@ export default function Dashboard({ items, configs }) {
 
   const errors = {
     serverError: 'Failed due to server error.',
+    configFailed: 'Failed to submit Configurations.',
     default: 'Unable to submit.',
   }
   const successMsg = {
     updated: 'Updated previous data.',
     createdNew: 'New item added successfully.',
+    configAdded: 'Configurations added successfully',
     default: 'Form submitted.',
   }
   useEffect(() => {
