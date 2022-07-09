@@ -16,7 +16,8 @@ export default async function handler(req, res) {
         try {
           var resp = await User.findById(data.User_ID)
           resp.monitor_email = data.monitor_email || session.user.email
-          resp.currency = data.currency
+          resp.currency =
+            data.currency && data.currency != '' ? data.currency : 'USD'
           var newData = await resp.save()
           res.status(201).json({
             resp: {
@@ -53,9 +54,7 @@ export default async function handler(req, res) {
     case 'GET':
       try {
         const configs = await User.findById(session.user.uid)
-        res.status(200).json({
-          configs,
-        })
+        res.status(200).json(configs)
       } catch (error) {
         res.status(400).json({
           success: false,

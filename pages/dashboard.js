@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
   )
   const res2 = await rawres2.json()
   const datasreturn2 = JSON.parse(JSON.stringify(res2))
-  console.log(datasreturn2.configs)
+  console.log(datasreturn2)
 
   const rawres = await fetch(
     'https://price-tracker-ivory.vercel.app/api/items',
@@ -54,7 +54,7 @@ export async function getServerSideProps(context) {
     props: {
       session,
       items: datasreturn,
-      configs: datasreturn2.configs,
+      configs: datasreturn2,
     },
   }
 }
