@@ -284,7 +284,7 @@ export default function Dashboard({ items, configs }) {
           <div className="mb-3">
             <label className="form-label">Logging Email</label>
             <input
-              value={configs ? configs.currency : 'USD'}
+              value={configs ? configs.monitor_email : session.user.email}
               onChange={(e) => setLogEmail(e.target.value)}
               type="text"
               className="form-control"
@@ -293,7 +293,7 @@ export default function Dashboard({ items, configs }) {
           <div className="mb-3">
             <label className="form-label">Preferred Currency Code</label>
             <input
-              value={configs ? configs.monitor_email : session.user.email}
+              value={configs ? configs.currency : 'USD'}
               onChange={(e) => setCurrency(e.target.value)}
               type="text"
               className="form-control"
