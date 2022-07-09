@@ -127,13 +127,16 @@ export default function Dashboard({ items, configs }) {
       router.push('/dashboard?error=' + datasreturn.resp.message)
     }
     if (datasreturn.resp.status == 'success') {
+      e.target.reset()
       router.push('/dashboard?success=' + datasreturn.resp.message)
     }
+    /*
     // reset input fields
     setName('')
     setUri('')
     setWebsite('')
     setPrice('')
+    */
   }
   async function configSubmitHandle(e) {
     e.preventDefault()
