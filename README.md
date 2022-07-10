@@ -28,4 +28,4 @@ Made using JS (**NodeJS**)
 - [ ] Discord Bot
 - [ ] Telegram Bot
 ___
- **<p align="center">Proudly made in Bangladesh 🇧🇩</p>**
+**<p align="center">Proudly Made In Bangladesh 🇧🇩</p>**
