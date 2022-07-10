@@ -23,9 +23,9 @@ Made using JS (**NextJS**)
 ## Tasks
 
 - [x] GUI ([Website](https://price-tracker-ivory.vercel.app/))
-- [x] Monitoring engine
+- [x] [Monitoring engine](https://github.com/GitPro10/price-tracker/tree/engine)
 - [x] A NPM Package ([eshop-scraper](https://npm.io/package/eshop-scraper))
 - [ ] Discord Bot
 - [ ] Telegram Bot
-
-## Made in Bangladesh
+___
+**<p align="center">Proudly Made In Bangladesh 🇧🇩</p>**
