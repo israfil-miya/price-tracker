@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "monitor": "node ."
+    "monitor": "node .",
+    "gitpush": "git add . && git commit -m 'Some fixes' && git push"
   },
   "author": "Jubayer",
   "license": "ISC",

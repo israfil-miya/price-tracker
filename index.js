@@ -19,9 +19,9 @@ var counter = 0;
     let prev_price = item.curr_price
     let price_wanted = item.price_wanted
     var item_uri = item.item_uri
-    let currency = "USD"
+    let currency = UserData.currency || "USD"
     var website = item.website
-    let email = UserData.email
+    let email = UserData.monitor_email || UserData.email
     let name = UserData.name
     //
     const itemsCurrentInfo = await getprice(item_uri, currency)
