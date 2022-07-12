@@ -27,5 +27,7 @@ Made using JS (**NextJS**)
 - [x] A NPM Package ([eshop-scraper](https://npm.io/package/eshop-scraper))
 - [ ] Discord Bot
 - [ ] Telegram Bot
-___
+
+---
+
 **<p align="center">Proudly Made In Bangladesh 🇧🇩</p>**

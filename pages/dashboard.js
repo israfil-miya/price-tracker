@@ -35,17 +35,14 @@ export async function getServerSideProps(context) {
   const datasreturn2 = JSON.parse(JSON.stringify(res2.configs))
   console.log(datasreturn2)
 
-  const rawres = await fetch(
-    'https://price-tracker-ivory.vercel.app/api/items',
-    {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ getdata: true, uid: session.user.uid }),
+  const rawres = await fetch('/api/items', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-  )
+    body: JSON.stringify({ getdata: true, uid: session.user.uid }),
+  })
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
   console.log(datasreturn)
@@ -130,13 +127,6 @@ export default function Dashboard({ items, configs }) {
       e.target.reset()
       router.push('/dashboard?success=' + datasreturn.resp.message)
     }
-    /*
-    // reset input fields
-    setName('')
-    setUri('')
-    setWebsite('')
-    setPrice('')
-    */
   }
   async function configSubmitHandle(e) {
     e.preventDefault()
