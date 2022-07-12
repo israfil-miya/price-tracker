@@ -2,7 +2,7 @@ import dbConnect from '../../db/dbConnect'
 dbConnect()
 import Feedback from '../../db/Feedback'
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   const data = req.body
   const { method } = req
   switch (method) {

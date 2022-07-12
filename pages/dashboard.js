@@ -64,18 +64,18 @@ export default function Dashboard({ items, configs }) {
   const [log_email, setLogEmail] = useState(session.user.email)
   const [currency, setCurrency] = useState('USD')
 
-  const errors = {
-    serverError: 'Failed due to server error.',
-    configFailed: 'Failed to submit Configurations.',
-    default: 'Unable to submit.',
-  }
-  const successMsg = {
-    updated: 'Updated previous data.',
-    createdNew: 'New item added successfully.',
-    configAdded: 'Configurations added successfully',
-    default: 'Form submitted.',
-  }
   useEffect(() => {
+    const errors = {
+      serverError: 'Failed due to server error.',
+      configFailed: 'Failed to submit Configurations.',
+      default: 'Unable to submit.',
+    }
+    const successMsg = {
+      updated: 'Updated previous data.',
+      createdNew: 'New item added successfully.',
+      configAdded: 'Configurations added successfully',
+      default: 'Form submitted.',
+    }
     if (error) {
       const errorMessage = error && (errors[error] ?? errors.default)
       toast.error(errorMessage, {
@@ -91,7 +91,7 @@ export default function Dashboard({ items, configs }) {
       })
       router.push('/dashboard')
     }
-  }, [error, errors, success, successMsg, router])
+  }, [error, success, router])
 
   async function addItemSubmitHandle(e) {
     e.preventDefault()

@@ -38,24 +38,25 @@ export default function Index({ faqs, feedbacks }) {
   let name = session
     ? ' there, ' + session.user.name + '!'
     : ' there, Ghost Human!'
-  const errors = {
-    Signin: 'Try signing with a different account.',
-    OAuthSignin: 'Try signing with a different account.',
-    OAuthCallback: 'Try signing with a different account.',
-    OAuthCreateAccount: 'Try signing with a different account.',
-    EmailCreateAccount: 'Try signing with a different account.',
-    Callback: 'Try signing with a different account.',
-    OAuthAccountNotLinked:
-      'To confirm your identity, sign in with the same account you used originally.',
-    EmailSignin: 'Check your email address.',
-    CredentialsSignin:
-      'Sign in failed. Check the details you provided are correct.',
-    forbidden: "You can't access that page without login.",
-    hackeralert:
-      "You are a hacker and somehow got the id of a private item that doesn't belongs to you, You are so pathetic!!",
-    default: 'Unable to sign in.',
-  }
+
   useEffect(() => {
+    const errors = {
+      Signin: 'Try signing with a different account.',
+      OAuthSignin: 'Try signing with a different account.',
+      OAuthCallback: 'Try signing with a different account.',
+      OAuthCreateAccount: 'Try signing with a different account.',
+      EmailCreateAccount: 'Try signing with a different account.',
+      Callback: 'Try signing with a different account.',
+      OAuthAccountNotLinked:
+        'To confirm your identity, sign in with the same account you used originally.',
+      EmailSignin: 'Check your email address.',
+      CredentialsSignin:
+        'Sign in failed. Check the details you provided are correct.',
+      forbidden: "You can't access that page without login.",
+      hackeralert:
+        "You are a hacker and somehow got the id of a private item that doesn't belongs to you, You are so pathetic!!",
+      default: 'Unable to sign in.',
+    }
     if (error) {
       const errorMessage = error && (errors[error] ?? errors.default)
       toast.error(errorMessage, {
@@ -63,7 +64,7 @@ export default function Index({ faqs, feedbacks }) {
       })
       router.push('/')
     }
-  }, [error, errors, router])
+  }, [error, router])
 
   return (
     <>

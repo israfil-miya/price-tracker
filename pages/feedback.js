@@ -14,16 +14,17 @@ export default function Feedback() {
     : '/static/images/me.jpg'
   const [message, setMessage] = useState('')
   const [question, setQuestion] = useState('')
-  const errors = {
-    serverError: 'Failed due to server error.',
-    default: 'Unable to submit.',
-  }
-  const successMsg = {
-    updated: 'Updated previous data.',
-    createdNew: 'Form submitted successfully.',
-    default: 'Form submitted.',
-  }
+
   useEffect(() => {
+    const errors = {
+      serverError: 'Failed due to server error.',
+      default: 'Unable to submit.',
+    }
+    const successMsg = {
+      updated: 'Updated previous data.',
+      createdNew: 'Form submitted successfully.',
+      default: 'Form submitted.',
+    }
     if (error) {
       const errorMessage = error && (errors[error] ?? errors.default)
       toast.error(errorMessage, {
@@ -39,7 +40,7 @@ export default function Feedback() {
       })
       router.push('/feedback')
     }
-  }, [error, errors, success, successMsg, router])
+  }, [error, success, router])
 
   async function feedbackFormSubmitHandle(e) {
     e.preventDefault()

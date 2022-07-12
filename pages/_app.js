@@ -32,7 +32,7 @@ export default function MyApp({
           content="price tracker, track items price, track prices for free, free price tracker, best free price tracker, jubayer ahmed, amazon price tracker, walmart price tracker, nibtendo price tracker, amazon india"
         />
         <meta name="robots" content="index,follow" />
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="English" />
         <meta name="revisit-after" content="2 days" />
         <meta name="author" content="Israfil Miya" />

@@ -2,7 +2,7 @@ import dbConnect from '../../db/dbConnect'
 dbConnect()
 import Faq from '../../db/Faqs'
 
-export default async (req, res) => {
+export default async function handler(req, res) {
   const data = req.body
   const { method } = req
 
