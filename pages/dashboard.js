@@ -20,19 +20,22 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const rawres2 = await fetch(`${process.env.BASE_URL}/api/user_config`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+  const rawres2 = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/user_config`,
+    {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ getdata: true, uid: session.user.uid }),
     },
-    body: JSON.stringify({ getdata: true, uid: session.user.uid }),
-  })
+  )
   const res2 = await rawres2.json()
   const datasreturn2 = JSON.parse(JSON.stringify(res2.configs))
   console.log(datasreturn2)
 
-  const rawres = await fetch(`${process.env.BASE_URL}/api/items`, {
+  const rawres = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/items`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -102,14 +105,17 @@ export default function Dashboard({ items, configs }) {
       price_wanted,
       User_ID: session.user.uid,
     }
-    const rawres = await fetch(`${process.env.BASE_URL}/api/items`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    const rawres = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/items`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    })
+    )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)
@@ -129,14 +135,17 @@ export default function Dashboard({ items, configs }) {
       monitor_email: log_email,
       User_ID: session.user?.uid,
     }
-    const rawres = await fetch(`${process.env.BASE_URL}/api/user_config`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    const rawres = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/user_config`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    })
+    )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)

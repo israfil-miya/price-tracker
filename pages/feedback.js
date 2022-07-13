@@ -50,14 +50,17 @@ export default function Feedback() {
       message,
       image,
     }
-    const rawres = await fetch(`${process.env.BASE_URL}/api/feedbacks`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    const rawres = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/feedbacks`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       },
-      body: JSON.stringify(data),
-    })
+    )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
     if (datasreturn.resp.status == 'error') {
@@ -74,7 +77,7 @@ export default function Feedback() {
       User_ID: session.user.uid,
       question,
     }
-    const rawres = await fetch(`${process.env.BASE_URL}/api/faqs`, {
+    const rawres = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/faqs`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

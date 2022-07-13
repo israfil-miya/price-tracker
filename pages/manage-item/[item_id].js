@@ -19,14 +19,17 @@ export async function getServerSideProps(context) {
   }
 
   const validation = { checkUser: true, id: item_id }
-  const rawres = await fetch(`${process.env.BASE_URL}/api/item_manage`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+  const rawres = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/item_manage`,
+    {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(validation),
     },
-    body: JSON.stringify(validation),
-  })
+  )
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
   console.log(datasreturn)
@@ -74,14 +77,17 @@ export default function Item_manage() {
   async function deleteItemFunc(e) {
     e.preventDefault()
     const validation = { deleteItem: true, id: item_id }
-    const rawres = await fetch(`${process.env.BASE_URL}/api/item_manage`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    const rawres = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/item_manage`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(validation),
       },
-      body: JSON.stringify(validation),
-    })
+    )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)
@@ -102,14 +108,17 @@ export default function Item_manage() {
       price_wanted: priceWanted != '' ? priceWanted : undefined,
     }
     const validation = { id: item_id }
-    const rawres = await fetch(`${process.env.BASE_URL}/api/item_manage`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+    const rawres = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/item_manage`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data, validation }),
       },
-      body: JSON.stringify({ data, validation }),
-    })
+    )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)
