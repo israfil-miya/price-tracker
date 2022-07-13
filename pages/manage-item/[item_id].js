@@ -19,7 +19,7 @@ export async function getServerSideProps(context) {
   }
 
   const validation = { checkUser: true, id: item_id }
-  const rawres = await fetch(process.env.BASE_URL + '/api/item_manage', {
+  const rawres = await fetch(`${process.env.BASE_URL}/api/item_manage`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -74,7 +74,7 @@ export default function Item_manage() {
   async function deleteItemFunc(e) {
     e.preventDefault()
     const validation = { deleteItem: true, id: item_id }
-    const rawres = await fetch(process.env.BASE_URL + '/api/item_manage', {
+    const rawres = await fetch(`${process.env.BASE_URL}/api/item_manage`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -102,7 +102,7 @@ export default function Item_manage() {
       price_wanted: priceWanted != '' ? priceWanted : undefined,
     }
     const validation = { id: item_id }
-    const rawres = await fetch(process.env.BASE_URL + '/api/item_manage', {
+    const rawres = await fetch(`${process.env.BASE_URL}/api/item_manage`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

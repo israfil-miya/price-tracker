@@ -8,7 +8,7 @@ export default function Feedback() {
   const router = useRouter()
   const { error, success } = router.query
   const { data: session } = useSession()
-  const name = session.user?.name
+  const name = session.user.name
   const image = session.user.image
     ? session.user.image
     : '/static/images/me.jpg'
@@ -50,7 +50,7 @@ export default function Feedback() {
       message,
       image,
     }
-    const rawres = await fetch(process.env.BASE_URL + '/api/feedbacks', {
+    const rawres = await fetch(`${process.env.BASE_URL}/api/feedbacks`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -74,7 +74,7 @@ export default function Feedback() {
       User_ID: session.user.uid,
       question,
     }
-    const rawres = await fetch(process.env.BASE_URL + '/api/faqs', {
+    const rawres = await fetch(`${process.env.BASE_URL}/api/faqs`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -12,12 +12,12 @@ const Faqs = dynamic(() => import('../components/faqs'))
 const Feedbacks = dynamic(() => import('../components/feedbacks'))
 
 export async function getServerSideProps(context) {
-  const res = await fetch(process.env.BASE_URL + '/api/faqs')
+  const res = await fetch(`${process.env.BASE_URL}/api/faqs`)
   const data = await res.json()
   const datasreturn = JSON.parse(JSON.stringify(data.faqs))
   //console.log(datasreturn[0].question)
 
-  const res2 = await fetch(process.env.BASE_URL + '/api/feedbacks')
+  const res2 = await fetch(`${process.env.BASE_URL}/api/feedbacks`)
   const data2 = await res2.json()
   const datasreturn2 = JSON.parse(JSON.stringify(data2.feedbacks))
   return {

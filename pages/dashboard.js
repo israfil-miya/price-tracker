@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const rawres2 = await fetch(process.env.BASE_URL + '/api/user_config', {
+  const rawres2 = await fetch(`${process.env.BASE_URL}/api/user_config`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
   const datasreturn2 = JSON.parse(JSON.stringify(res2.configs))
   console.log(datasreturn2)
 
-  const rawres = await fetch(process.env.BASE_URL + '/api/items', {
+  const rawres = await fetch(`${process.env.BASE_URL}/api/items`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -100,9 +100,9 @@ export default function Dashboard({ items, configs }) {
       website,
       item_uri,
       price_wanted,
-      User_ID: session.user?.uid,
+      User_ID: session.user.uid,
     }
-    const rawres = await fetch(process.env.BASE_URL + '/api/items', {
+    const rawres = await fetch(`${process.env.BASE_URL}/api/items`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -129,7 +129,7 @@ export default function Dashboard({ items, configs }) {
       monitor_email: log_email,
       User_ID: session.user?.uid,
     }
-    const rawres = await fetch(process.env.BASE_URL + '/api/user_config', {
+    const rawres = await fetch(`${process.env.BASE_URL}/api/user_config`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
