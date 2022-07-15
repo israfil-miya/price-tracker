@@ -1,5 +1,3 @@
-// models/User.js
-
 import mongoose from 'mongoose'
 const ItemSchema = new mongoose.Schema({
   item_name: {

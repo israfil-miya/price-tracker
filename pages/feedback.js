@@ -16,25 +16,15 @@ export default function Feedback() {
   const [question, setQuestion] = useState('')
 
   useEffect(() => {
-    const errors = {
-      serverError: 'Failed due to server error.',
-      default: 'Unable to submit.',
-    }
-    const successMsg = {
-      updated: 'Updated previous data.',
-      createdNew: 'Form submitted successfully.',
-      default: 'Form submitted.',
-    }
     if (error) {
-      const errorMessage = error && (errors[error] ?? errors.default)
+      const errorMessage = 'Failed to submit the form.'
       toast.error(errorMessage, {
         toastId: 'error',
       })
       router.push('/feedback')
     }
     if (success) {
-      const successMessage =
-        success && (successMsg[success] ?? successMsg.default)
+      const successMessage = 'Form submitted successfully.'
       toast.success(successMessage, {
         toastId: 'success',
       })
@@ -63,11 +53,11 @@ export default function Feedback() {
     )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
-    if (datasreturn.resp.status == 'error') {
-      router.push('/feedback?error=' + datasreturn.resp.message)
-    }
-    if (datasreturn.resp.status == 'success') {
-      router.push('/feedback?success=' + datasreturn.resp.message)
+    if (datasreturn.success) {
+      e.target.reset()
+      router.push('/feedback?success=true')
+    } else if (!datasreturn.success) {
+      router.push('/feedback?error=true')
     }
   }
   async function faqFormSubmitHandle(e) {
@@ -85,13 +75,14 @@ export default function Feedback() {
       },
       body: JSON.stringify(data),
     })
+
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
-    if (datasreturn.resp.status == 'error') {
-      router.push('/feedback?error=' + datasreturn.resp.message)
-    }
-    if (datasreturn.resp.status == 'success') {
-      router.push('/feedback?success=' + datasreturn.resp.message)
+    if (datasreturn.success) {
+      e.target.reset()
+      router.push('/feedback?success=true')
+    } else if (!datasreturn.success) {
+      router.push('/feedback?error=true')
     }
   }
 

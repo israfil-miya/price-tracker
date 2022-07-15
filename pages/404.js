@@ -1,13 +1,6 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 export default function Error() {
   const router = useRouter()
-  useEffect(() => {
-    setTimeout(function () {
-      router.back()
-    }, 3000)
-  }, [router])
-
   return (
     <div className="outer d-flex justify-content-center align-items-center text-center container">
       <div className="inner">

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 export default function Header() {
-  const { data: session, status } = useSession()
+  const { data: session } = useSession()
   return (
     <>
       <nav className="p-0 m-0 navbar shadow-sm navbar-light bg-light">
@@ -153,14 +153,4 @@ export default function Header() {
       `}</style>
     </>
   )
-}
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context)
-
-  return {
-    props: {
-      session,
-    },
-  }
 }

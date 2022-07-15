@@ -28,11 +28,11 @@ export async function getServerSideProps(context) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ getdata: true, uid: session.user.uid }),
+      body: JSON.stringify({ getData: true, uid: session.user.uid }),
     },
   )
   const res2 = await rawres2.json()
-  const datasreturn2 = JSON.parse(JSON.stringify(res2.configs))
+  const datasreturn2 = JSON.parse(JSON.stringify(res2))
   console.log(datasreturn2)
 
   const rawres = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/items`, {
@@ -41,7 +41,7 @@ export async function getServerSideProps(context) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ getdata: true, uid: session.user.uid }),
+    body: JSON.stringify({ getData: true, uid: session.user.uid }),
   })
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
@@ -64,31 +64,19 @@ export default function Dashboard({ items, configs }) {
   const [website, setWebsite] = useState('')
   const [item_uri, setUri] = useState('')
   const [price_wanted, setPrice] = useState('')
-  const [log_email, setLogEmail] = useState(session.user.email)
-  const [currency, setCurrency] = useState('USD')
+  const [log_email, setLogEmail] = useState('')
+  const [currency, setCurrency] = useState('')
 
   useEffect(() => {
-    const errors = {
-      serverError: 'Failed due to server error.',
-      configFailed: 'Failed to submit Configurations.',
-      default: 'Unable to submit.',
-    }
-    const successMsg = {
-      updated: 'Updated previous data.',
-      createdNew: 'New item added successfully.',
-      configAdded: 'Configurations added successfully',
-      default: 'Form submitted.',
-    }
     if (error) {
-      const errorMessage = error && (errors[error] ?? errors.default)
+      const errorMessage = 'Failed to submit the form.'
       toast.error(errorMessage, {
         toastId: 'error',
       })
       router.push('/dashboard')
     }
     if (success) {
-      const successMessage =
-        success && (successMsg[success] ?? successMsg.default)
+      const successMessage = 'Form submitted successfully.'
       toast.success(successMessage, {
         toastId: 'success',
       })
@@ -120,12 +108,11 @@ export default function Dashboard({ items, configs }) {
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)
 
-    if (datasreturn.resp.status == 'error') {
-      router.push('/dashboard?error=' + datasreturn.resp.message)
-    }
-    if (datasreturn.resp.status == 'success') {
+    if (datasreturn.success) {
       e.target.reset()
-      router.push('/dashboard?success=' + datasreturn.resp.message)
+      router.push('/dashboard?success=true')
+    } else if (!datasreturn.success) {
+      router.push('/dashboard?error=true')
     }
   }
   async function configSubmitHandle(e) {
@@ -150,11 +137,10 @@ export default function Dashboard({ items, configs }) {
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)
 
-    if (datasreturn.resp.status == 'error') {
-      router.push('/dashboard?error=' + datasreturn.resp.message)
-    }
-    if (datasreturn.resp.status == 'success') {
-      router.push('/dashboard?success=' + datasreturn.resp.message)
+    if (datasreturn.success) {
+      router.push('/dashboard?success=true')
+    } else if (!datasreturn.success) {
+      router.push('/dashboard?error=true')
     }
   }
   return (

@@ -6,56 +6,32 @@ export default async function handler(req, res) {
   const data = req.body
   const { method } = req
   switch (method) {
+    case 'GET':
+      try {
+        const feedbacks = await Feedback.find({})
+        res.status(200).json(feedbacks)
+      } catch (error) {
+        res.status(400).json({
+          success: false,
+          message: 'Ow snap! Something gone wrong.',
+          error,
+        })
+      }
+      break
     case 'POST':
       try {
-        var resp = await Feedback.updateOne(
+        var resp = await Feedback.findOneAndUpdate(
           {
             User_ID: data.User_ID,
           },
           data,
+          {
+            new: true,
+            upsert: true,
+          },
         )
-          .then(function (err, res) {
-            if (err) {
-              var errMessage =
-                err.matchedCount == 0
-                  ? 'Feedback Record does not exist, will create new...'
-                  : 'Record not updated'
-              // If no match, create new
-              if (err.matchedCount == 0) {
-                const create_feedback = new Feedback(data)
-                resp = create_feedback.save().then(function () {
-                  return {
-                    status: 'success',
-                    message: 'createdNew',
-                  }
-                })
-                return resp
-              }
 
-              // Exists, return success update message
-              if (err.matchedCount == 1) {
-                return {
-                  status: 'success',
-                  message: 'updated',
-                }
-              } else {
-                return {
-                  status: 'error',
-                  code: err.modifiedCount,
-                  message: errMessage,
-                }
-              }
-            }
-          })
-          .catch((error) => {
-            return {
-              status: 'error',
-              code: 400,
-              message: 'serverError',
-            }
-          })
-
-        res.status(201).json({
+        res.status(200).json({
           success: true,
           resp,
         })
@@ -64,19 +40,6 @@ export default async function handler(req, res) {
           success: false,
         })
         console.log(error)
-      }
-      break
-    case 'GET':
-      try {
-        const feedbacks = await Feedback.find({})
-        res.status(200).json({
-          feedbacks,
-        })
-      } catch (error) {
-        res.status(400).json({
-          success: false,
-          error: error,
-        })
       }
       break
     default:

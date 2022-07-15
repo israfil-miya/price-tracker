@@ -1,5 +1,3 @@
-// models/User.js
-
 import mongoose from 'mongoose'
 const FeedbackSchema = new mongoose.Schema({
   name: {

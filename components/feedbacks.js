@@ -20,8 +20,8 @@ export default function feedbacks({ feedbacks }) {
                           layout="fixed"
                           src={feedback.image}
                           alt={`${feedback.name}'s Profile Picture`}
-                          width="60px"
-                          height="60px"
+                          width="75px"
+                          height="75px"
                           className="rounded-circle"
                         />
                       </div>
@@ -29,7 +29,7 @@ export default function feedbacks({ feedbacks }) {
                         <h6 className="font-medium">{feedback.name}</h6>{' '}
                         <span
                           style={{ fontSize: '15px' }}
-                          className="m-b-15 text-break text-wrap d-block"
+                          className="m-b-15 text-break text-wrap d-block feedbackMessage"
                         >
                           {feedback.message}
                         </span>

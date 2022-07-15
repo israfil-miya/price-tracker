@@ -18,7 +18,6 @@ export async function getServerSideProps(context) {
     }
   }
 
-  const validation = { checkUser: true, id: item_id }
   const rawres = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/item_manage`,
     {
@@ -27,15 +26,15 @@ export async function getServerSideProps(context) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(validation),
+      body: JSON.stringify({ checkItemsData: true, id: item_id }),
     },
   )
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
   console.log(datasreturn)
 
-  if (datasreturn.resp.status == 'success') {
-    if (datasreturn.resp.data.User_ID != session.user.uid) {
+  if (datasreturn.success) {
+    if (datasreturn.resp.User_ID != session.user.uid) {
       return {
         redirect: {
           destination: '/?error=hackeralert',
@@ -61,13 +60,15 @@ export default function Item_manage() {
   const [priceWanted, setNewPrice] = useState('')
   useEffect(() => {
     if (error) {
-      toast.error('Failed due to server problem.', {
+      const errorMessage = 'Something gone wrong.'
+      toast.error(errorMessage, {
         toastId: 'error',
       })
       router.push('/manage-item/' + item_id)
     }
     if (success) {
-      toast.success('Data updated successfully.', {
+      const successMessage = 'Form submitted successfully.'
+      toast.success(successMessage, {
         toastId: 'success',
       })
       router.push('/manage-item/' + item_id)
@@ -76,7 +77,6 @@ export default function Item_manage() {
 
   async function deleteItemFunc(e) {
     e.preventDefault()
-    const validation = { deleteItem: true, id: item_id }
     const rawres = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/item_manage`,
       {
@@ -85,18 +85,18 @@ export default function Item_manage() {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(validation),
+        body: JSON.stringify({ deleteItem: true, id: item_id }),
       },
     )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)
 
-    if (datasreturn.resp.status == 'error') {
-      router.push('/manage-item/' + item_id + '/?error=true')
-    }
-    if (datasreturn.resp.status == 'success') {
+    if (datasreturn.success) {
       router.push('/dashboard')
+    }
+    if (!datasreturn.success) {
+      router.push('/manage-item/' + item_id + '/?error=true')
     }
   }
   async function updateItemSubmitHandle(e) {
@@ -107,7 +107,7 @@ export default function Item_manage() {
       item_uri: itemUri != '' ? itemUri : undefined,
       price_wanted: priceWanted != '' ? priceWanted : undefined,
     }
-    const validation = { id: item_id }
+
     const rawres = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/item_manage`,
       {
@@ -116,18 +116,18 @@ export default function Item_manage() {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ data, validation }),
+        body: JSON.stringify({ data, id: item_id }),
       },
     )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
     console.log(datasreturn)
 
-    if (datasreturn.resp.status == 'error') {
-      router.push('/manage-item/' + item_id + '/?error=true')
-    }
-    if (datasreturn.resp.status == 'success') {
+    if (datasreturn.success) {
       router.push('/manage-item/' + item_id + '/?success=true')
+    }
+    if (!datasreturn.success) {
+      router.push('/manage-item/' + item_id + '/?error=true')
     }
   }
   return (
@@ -137,7 +137,7 @@ export default function Item_manage() {
       <div className="container text-break text-wrap my-4 p-2 bg-light">
         <div className="text-center">
           <p className="px-3 d-inline-block text-center py-2 mt-2 bg-warning rounded border border-1">
-            Uodate Item
+            Update Item
           </p>
         </div>
         <form onSubmit={updateItemSubmitHandle}>
@@ -177,10 +177,10 @@ export default function Item_manage() {
             Submit
           </button>
         </form>
-
+        <br />
         <button
           onClick={deleteItemFunc}
-          className="btn mt-4 mb-2 btn-danger btn-sm d-block w-100"
+          className="btn mt-5 mb-2 btn-danger btn-sm d-block w-100"
         >
           Delete this item permanently (no confirmation)
         </button>

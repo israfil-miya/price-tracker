@@ -15,12 +15,12 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "@next-auth/mongodb-adapter": "^1.0.1",
+    "@next-auth/mongodb-adapter": "^1.0.3",
     "moment": "^2.29.4",
-    "mongodb": "^4.3.1",
-    "mongoose": "^6.2.1",
-    "next": "^12.2.2",
-    "next-auth": "^4.9.0",
+    "mongodb": "^4.8.0",
+    "mongoose": "^6.4.4",
+    "next": "^12.2.3-canary.9",
+    "next-auth": "^4.10.0",
     "nextjs-progressbar": "^0.0.13",
     "prettier": "^2.7.1",
     "react": "17.0.2",

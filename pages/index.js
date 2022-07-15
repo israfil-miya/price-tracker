@@ -14,12 +14,12 @@ const Feedbacks = dynamic(() => import('../components/feedbacks'))
 export async function getServerSideProps(context) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/faqs`)
   const data = await res.json()
-  const datasreturn = JSON.parse(JSON.stringify(data.faqs))
+  const datasreturn = JSON.parse(JSON.stringify(data))
   //console.log(datasreturn[0].question)
 
   const res2 = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/feedbacks`)
   const data2 = await res2.json()
-  const datasreturn2 = JSON.parse(JSON.stringify(data2.feedbacks))
+  const datasreturn2 = JSON.parse(JSON.stringify(data2))
   return {
     props: {
       faqs: datasreturn,
@@ -34,10 +34,8 @@ export default function Index({ faqs, feedbacks }) {
   const { observe, inView } = useInView({
     onEnter: ({ unobserve }) => unobserve(), // only run once
   })
-  const { data: session, status } = useSession()
-  let name = session
-    ? ' there, ' + session.user.name + '!'
-    : ' there, Ghost Human!'
+  const { data: session } = useSession()
+  let name = session ? ' there, ' + session.user.name + '!' : ' there, User!'
 
   useEffect(() => {
     const errors = {
@@ -55,7 +53,7 @@ export default function Index({ faqs, feedbacks }) {
       forbidden: "You can't access that page without login.",
       hackeralert:
         "You are a hacker and somehow got the id of a private item that doesn't belongs to you, You are so pathetic!!",
-      default: 'Unable to sign in.',
+      default: 'Something gone wrong.',
     }
     if (error) {
       const errorMessage = error && (errors[error] ?? errors.default)
@@ -127,6 +125,26 @@ export default function Index({ faqs, feedbacks }) {
             can see all your items listed for monitoring and other monitoring
             information such as current price of that item and other things.
             Enjoy the free service!!
+          </div>
+          <h2>
+            <p className="px-3 py-2 mt-5 bg-warning rounded border border-1">
+              Important Notice
+            </p>
+          </h2>
+          <div className="notice-alert px-3 text-wrap">
+            This &quot;Price Tracker&quot; service is in it&apos;s development
+            phase. So this service doesn&apos;t works now. Price Monitoring
+            engines are also down. It&apos;s an open source project so you can
+            access the source code from{' '}
+            <Link href="https://github.com/GitPro10/price-tracker">
+              <a>GitHub</a>
+            </Link>
+            . If you like the project star it to give me some motivation. Also
+            if you have any quiries regarding the project you can reach me by{' '}
+            <Link href="https://facebook.com/ahmed.jubayer.69">
+              <a>Facebook</a>
+            </Link>
+            .
           </div>
         </div>
 

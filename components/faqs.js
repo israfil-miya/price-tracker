@@ -1,5 +1,4 @@
 export default function faqs({ faqs }) {
-  console.log(faqs ? faqs : undefined)
   return (
     <div>
       {faqs.map(
@@ -8,10 +7,12 @@ export default function faqs({ faqs }) {
           (
             <div className="faq" key={index}>
               <p className="text-break text-wrap">
-                <b>Q.</b> {faq.question}
+                <b>Q.</b>
+                <span>{faq.question}</span>
               </p>
               <p>
-                <b>A.</b>No answer right now.
+                <b>A.</b>
+                <span>No answer right now.</span>
               </p>
               <br />
             </div>

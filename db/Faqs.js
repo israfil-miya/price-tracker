@@ -1,5 +1,3 @@
-// models/User.js
-
 import mongoose from 'mongoose'
 const FaqSchema = new mongoose.Schema({
   name: {
