@@ -1,12 +1,12 @@
-import getprice from "../eshop-scraper/main.js"
+import getprice from '../eshop-scraper/main.js'
 import * as dotenv from 'dotenv'
 dotenv.config()
-import nodemailer from "nodemailer"
-import db from "./db.js"
-import htmlTamplate from "./email_html_tamplate.js"
+import nodemailer from 'nodemailer'
+import db from './db.js'
+import htmlTamplate from './email_html_tamplate.js'
 //
 //
-var counter = 0;
+var counter = 0
 async function updates_checker() {
   const data = await db.Item.find()
   await Promise.all(
@@ -14,14 +14,14 @@ async function updates_checker() {
       //
       const UserData = await db.User.findById(item.User_ID)
       //
-      if (!UserData) return;
+      if (!UserData) return
       //
       var item_name = item.item_name
       var curr_price = item.curr_price
       let prev_price = item.curr_price
       let price_wanted = item.price_wanted
       var item_uri = item.item_uri
-      let currency = UserData.currency || "USD"
+      let currency = UserData.currency || 'USD'
       var website = item.website
       let email = UserData.monitor_email || UserData.email
       let name = UserData.name
@@ -32,17 +32,21 @@ async function updates_checker() {
         //
         if (itemsCurrentInfo.price != curr_price) {
           //
-          let newData = await db.Item.findByIdAndUpdate(item._id, {
-            curr_price: itemsCurrentInfo.price,
-            item_name: itemsCurrentInfo.name,
-            website: itemsCurrentInfo.site
-          }, {
-            new: true
-          })
+          let newData = await db.Item.findByIdAndUpdate(
+            item._id,
+            {
+              curr_price: itemsCurrentInfo.price,
+              item_name: itemsCurrentInfo.name,
+              website: itemsCurrentInfo.site,
+            },
+            {
+              new: true,
+            },
+          )
           //
           const changeObj = {
             serial_no: i,
-            change: "Item's new price"
+            change: "Item's new price",
           }
           let finalData = []
           finalData.push(newData)
@@ -62,33 +66,49 @@ async function updates_checker() {
                 user: process.env.EMAIL,
                 pass: process.env.PASSWORD,
               },
-            });
+            })
             //
             let info = await transporter.sendMail({
-              from: '"Price Tracker" '+'<'+process.env.EMAIL+'>',
+              from: '"Price Tracker" ' + '<' + process.env.EMAIL + '>',
               to: email,
-              subject: 'Price Tracker – '+item_name,
-              html: htmlTamplate(name, item_name, itemsCurrentInfo.price, price_wanted, website, item_uri, currency, prev_price),
-            });
+              subject: 'Price Tracker – ' + item_name,
+              html: htmlTamplate(
+                name,
+                item_name,
+                itemsCurrentInfo.price,
+                price_wanted,
+                website,
+                item_uri,
+                currency,
+                prev_price,
+              ),
+            })
             console.log({
-              email_sent: "An email has been sent to "+email
+              email_sent: 'An email has been sent to ' + email,
             })
           }
           //
-          return;
+          return
         }
         //
-      } else if (itemsCurrentInfo.IsError && item_uri != "https://price-tracker-ivory.vercel.app/404") {
+      } else if (
+        itemsCurrentInfo.IsError &&
+        item_uri != 'https://price-tracker-ivory.vercel.app/404'
+      ) {
         //
-        let newData = await db.Item.findByIdAndUpdate(item._id, {
-          item_uri: "https://price-tracker-ivory.vercel.app/404"
-        }, {
-          new: true
-        })
+        let newData = await db.Item.findByIdAndUpdate(
+          item._id,
+          {
+            item_uri: 'https://price-tracker-ivory.vercel.app/404',
+          },
+          {
+            new: true,
+          },
+        )
         //
         const changeObj = {
           serial_no: i,
-          change: "Unknown website error"
+          change: 'Unknown website error',
         }
         let finalData = []
         finalData.push(newData)
@@ -99,22 +119,21 @@ async function updates_checker() {
         //
       }
       //
-    })
+    }),
   )
   //
 }
-(async function main_func() {
-  if (counter == 0) console.log("ENGINE STARTED !!!\n")
+;(async function main_func() {
+  if (counter == 0) console.log('ENGINE STARTED !!!\n')
   //
-  if (counter != 0) console.log("\n")
+  if (counter != 0) console.log('\n')
   await updates_checker()
   //
   counter++
-  console.log("\nLOOP DONE !!!")
-  console.log("LOOP COUNTER: "+counter)
+  console.log('\nLOOP DONE !!!')
+  console.log('LOOP COUNTER: ' + counter)
   // Loop this (price_tracker) function repeatedly after set number of time
-  setTimeout(main_func,
-    process.env.INTERVAL_TIME_IN_SEC*1000)
+  setTimeout(main_func, process.env.INTERVAL_TIME_IN_SEC * 1000)
 })()
 //
 //

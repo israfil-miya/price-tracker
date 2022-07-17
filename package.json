@@ -6,14 +6,24 @@
   "type": "module",
   "scripts": {
     "monitor": "node .",
-    "gitpush": "git add . && git commit -m 'Some fixes' && git push"
+    "gitpush": "npm run format:fix && npm run format && git add . && git commit -m 'Some fixes' && git push",
+    "format": "prettier --check --ignore-path .gitignore README.md .",
+    "format:fix": "prettier --write --ignore-path .gitignore README.md ."
   },
   "author": "Jubayer",
   "license": "ISC",
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
   "dependencies": {
     "dotenv": "^10.0.0",
     "eshop-scraper": "^1.2.1",
     "mongoose": "^5.13.14",
     "nodemailer": "^6.6.3"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1"
   }
 }

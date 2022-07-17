@@ -1,5 +1,14 @@
-export default function htmlTamplate(users_name,items_name, items_curr_price, items_wanted_price, website_name, items_uri, currency, items_prev_price){
-  return (`
+export default function htmlTamplate(
+  users_name,
+  items_name,
+  items_curr_price,
+  items_wanted_price,
+  website_name,
+  items_uri,
+  currency,
+  items_prev_price,
+) {
+  return `
   <!DOCTYPE html>
 <html>
 <head>
@@ -20,23 +29,35 @@ export default function htmlTamplate(users_name,items_name, items_curr_price, it
     <div class="list" style="padding: 2rem;background-color: #070015;border-radius: 5px;color: #ececec;line-height: 6px;word-wrap: break-word;">
       <h5>
         <span class="field">Item's name: </span>
-        <span class="query" style="font-weight: normal;color: #E30B5C;">${items_name.substring(0,23)+"…"}</span>
+        <span class="query" style="font-weight: normal;color: #E30B5C;">${
+          items_name.substring(0, 23) + '…'
+        }</span>
       </h5>
       <h5>
         <span class="field">Item's wanted price: </span>
-        <span class="query" style="font-weight: normal;color: #E30B5C;">${items_wanted_price+" "+currency}</span>
+        <span class="query" style="font-weight: normal;color: #E30B5C;">${
+          items_wanted_price + ' ' + currency
+        }</span>
       </h5>
       <h5>
         <span class="field">Item's previous price: </span>
-        <span class="query" style="font-weight: normal;color: #E30B5C;">${items_prev_price+" "+currency}</span>
+        <span class="query" style="font-weight: normal;color: #E30B5C;">${
+          items_prev_price + ' ' + currency
+        }</span>
       </h5>
       <h5>
         <span class="field">Item's current price: </span>
-        <span class="query" style="font-weight: normal;color: #E30B5C;">${items_curr_price+" "+currency}</span>
+        <span class="query" style="font-weight: normal;color: #E30B5C;">${
+          items_curr_price + ' ' + currency
+        }</span>
       </h5>
       <h5>
         <span class="field">Dropped: </span>
-        <span class="query" style="font-weight: normal;color: #E30B5C;">${parseFloat(items_prev_price-items_curr_price).toFixed(2)+" "+currency}</span>
+        <span class="query" style="font-weight: normal;color: #E30B5C;">${
+          parseFloat(items_prev_price - items_curr_price).toFixed(2) +
+          ' ' +
+          currency
+        }</span>
       </h5>
       <h5>
         <span class="field">Website: </span>
@@ -44,11 +65,13 @@ export default function htmlTamplate(users_name,items_name, items_curr_price, it
       </h5>
       <h5>
         <span class="field">Link: </span>
-        <span class="query" style="font-weight: normal;color: #E30B5C;"><a href=${items_uri} style="text-decoration: none;color: rgb(65, 105, 225);">${items_uri.substring(0,25)+"…"}</span>
+        <span class="query" style="font-weight: normal;color: #E30B5C;"><a href=${items_uri} style="text-decoration: none;color: rgb(65, 105, 225);">${
+    items_uri.substring(0, 25) + '…'
+  }</span>
       </h5>
     </div>
   </div>
 </body>
 </html>
-  `)
+  `
 }
