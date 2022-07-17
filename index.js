@@ -1,4 +1,4 @@
-import getprice from "eshop-scraper"
+import getprice from "../eshop-scraper/main.js"
 import * as dotenv from 'dotenv'
 dotenv.config()
 import nodemailer from "nodemailer"
@@ -7,14 +7,14 @@ import htmlTamplate from "./email_html_tamplate.js"
 //
 //
 var counter = 0;
-(async function price_tracker() {
-    counter++
-    const data = await db.Item.find()
+async function updates_checker() {
+  const data = await db.Item.find()
+  await Promise.all(
     data.map(async (item, i) => {
       //
       const UserData = await db.User.findById(item.User_ID)
       //
-      if(!UserData) return;
+      if (!UserData) return;
       //
       var item_name = item.item_name
       var curr_price = item.curr_price
@@ -100,12 +100,21 @@ var counter = 0;
       }
       //
     })
-    //
-    console.log({
-      info: "Loop done!",
-      loop_no: counter,
-    })
-    setTimeout(price_tracker,
-      process.env.INTERVAL_TIME_IN_SEC*1000);
-  
+  )
+  //
+}
+(async function main_func() {
+  if (counter == 0) console.log("ENGINE STARTED !!!\n")
+  //
+  if (counter != 0) console.log("\n")
+  await updates_checker()
+  //
+  counter++
+  console.log("\nLOOP DONE !!!")
+  console.log("LOOP COUNTER: "+counter)
+  // Loop this (price_tracker) function repeatedly after set number of time
+  setTimeout(main_func,
+    process.env.INTERVAL_TIME_IN_SEC*1000)
 })()
+//
+//
