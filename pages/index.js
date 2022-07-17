@@ -131,7 +131,7 @@ export default function Index({ faqs, feedbacks }) {
               <a>Facebook</a>
             </Link>
             . This service is built on top of{' '}
-            <Link href="https:npm.io/eshop-scraper">
+            <Link href="https://www.npmjs.com/package/eshop-scraper">
               <a>eshop-scraper</a>
             </Link>{' '}
             packege. Which is also made by me. So, websites supported by the
