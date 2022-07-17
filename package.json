@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "monitor": "node .",
+    "start": "node .",
     "gitpush": "npm run format:fix && npm run format && git add . && git commit -m 'Some fixes' && git push",
     "format": "prettier --check --ignore-path .gitignore README.md .",
     "format:fix": "prettier --write --ignore-path .gitignore README.md ."
