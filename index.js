@@ -1,4 +1,4 @@
-import getprice from '../eshop-scraper/main.js'
+import getprice from 'eshop-scraper'
 import * as dotenv from 'dotenv'
 dotenv.config()
 import nodemailer from 'nodemailer'

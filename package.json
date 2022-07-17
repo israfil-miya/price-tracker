@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "dotenv": "^10.0.0",
-    "eshop-scraper": "^1.2.1",
+    "eshop-scraper": "^1.2.3",
     "mongoose": "^5.13.14",
     "nodemailer": "^6.6.3"
   },
