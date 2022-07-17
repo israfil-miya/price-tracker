@@ -100,19 +100,6 @@ export default function Index({ faqs, feedbacks }) {
             </span>
           ) : null}
           <h2>
-            <p className="px-3 py-2 mt-5 bg-warning rounded border border-1">
-              About Me
-            </p>
-          </h2>
-          <div className="about-me-text px-3 text-wrap">
-            Hi, My name is Jubayer ahmed. I am from Bangladesh specifically from
-            Dhaka, Bangladesh. I am an young boy, currently doing my study, yes
-            I am a student. I am interested to make websites specifically the
-            Backend of websites, you can call me a Backend developer. You can
-            send me a friend request on my Facebook, if you need help.
-            That&apos;s it for now.
-          </div>
-          <h2>
             <p className="px-3 py-2 mt-3 bg-warning rounded border border-1">
               About &quot;Price Tracker&quot;
             </p>
@@ -128,23 +115,32 @@ export default function Index({ faqs, feedbacks }) {
           </div>
           <h2>
             <p className="px-3 py-2 mt-5 bg-warning rounded border border-1">
-              Important Notice
+              Technical Details
             </p>
           </h2>
           <div className="notice-alert px-3 text-wrap">
             This &quot;Price Tracker&quot; service is in it&apos;s development
-            phase. So this service doesn&apos;t works now. Price Monitoring
-            engines are also down. It&apos;s an open source project so you can
-            access the source code from{' '}
+            phase. So it may not work properly. It&apos;s an open source project
+            so you can access the source code from{' '}
             <Link href="https://github.com/GitPro10/price-tracker">
               <a>GitHub</a>
             </Link>
             . If you like the project star it to give me some motivation. Also
-            if you have any quiries regarding the project you can reach me by{' '}
+            if you have any quiries regarding the project you can reach me on{' '}
             <Link href="https://facebook.com/ahmed.jubayer.69">
               <a>Facebook</a>
             </Link>
-            .
+            . This service is built on top of{' '}
+            <Link href="https:npm.io/eshop-scraper">
+              <a>eshop-scraper</a>
+            </Link>{' '}
+            packege. Which is also made by me. So, websites supported by the
+            package also supported by this service. Reach me on{' '}
+            <Link href="https://facebook.com/ahmed.jubayer.69">
+              <a>Facebook</a>
+            </Link>{' '}
+            if you want to add your website or your favourite website where you
+            usually do shopping. Thanks!
           </div>
         </div>
 
