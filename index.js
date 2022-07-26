@@ -5,6 +5,42 @@ import nodemailer from 'nodemailer'
 import db from './db.js'
 import htmlTamplate from './email_html_tamplate.js'
 //
+async function sendMail(
+  email,
+  name,
+  item_name,
+  itemsCurrentInfo,
+  price_wanted,
+  website,
+  item_uri,
+  currency,
+  prev_price,
+) {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  })
+  //
+  let info = await transporter.sendMail({
+    from: '"Price Tracker" ' + '<' + process.env.EMAIL + '>',
+    to: email,
+    subject: 'Price Tracker – ' + item_name,
+    html: htmlTamplate(
+      name,
+      item_name,
+      itemsCurrentInfo.price,
+      price_wanted,
+      website,
+      item_uri,
+      currency,
+      prev_price,
+    ),
+  })
+}
 //
 var counter = 0
 async function updates_checker() {
@@ -59,30 +95,18 @@ async function updates_checker() {
           //
           if (itemsCurrentInfo.price <= price_wanted) {
             // sends email informing the user that price is lower than his wanted price
-            let transporter = nodemailer.createTransport({
-              service: 'gmail',
-              host: 'smtp.gmail.com',
-              auth: {
-                user: process.env.EMAIL,
-                pass: process.env.PASSWORD,
-              },
-            })
-            //
-            let info = await transporter.sendMail({
-              from: '"Price Tracker" ' + '<' + process.env.EMAIL + '>',
-              to: email,
-              subject: 'Price Tracker – ' + item_name,
-              html: htmlTamplate(
-                name,
-                item_name,
-                itemsCurrentInfo.price,
-                price_wanted,
-                website,
-                item_uri,
-                currency,
-                prev_price,
-              ),
-            })
+
+            await sendMail(
+              email,
+              name,
+              item_name,
+              itemsCurrentInfo,
+              price_wanted,
+              website,
+              item_uri,
+              currency,
+              prev_price,
+            )
             console.log({
               email_sent: 'An email has been sent to ' + email,
             })
@@ -132,7 +156,7 @@ async function updates_checker() {
   counter++
   console.log('\nLOOP DONE !!!')
   console.log('LOOP COUNTER: ' + counter)
-  // Loop this (price_tracker) function repeatedly after set number of time
+  // Loop this (main_func) function repeatedly after set number of time
   setTimeout(main_func, process.env.INTERVAL_TIME_IN_SEC * 1000)
 })()
 //

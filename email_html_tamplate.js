@@ -54,9 +54,11 @@ export default function htmlTamplate(
       <h5>
         <span class="field">Dropped: </span>
         <span class="query" style="font-weight: normal;color: #E30B5C;">${
-          parseFloat(items_prev_price - items_curr_price).toFixed(2) +
-          ' ' +
-          currency
+          items_prev_price != 0
+            ? parseFloat(items_prev_price - items_curr_price).toFixed(2) +
+              ' ' +
+              currency
+            : '0 ' + currency
         }</span>
       </h5>
       <h5>
