@@ -93,8 +93,11 @@ async function updates_checker() {
           item_name = newData.item_name
           website = newData.website
           //
-          if (itemsCurrentInfo.price <= price_wanted) {
-            // sends email informing the user that price is lower than his wanted price
+          if (
+            itemsCurrentInfo.price <= price_wanted &&
+            prev_price > curr_price
+          ) {
+            // sends email informing the user that price is lower than his wanted price and ensure that price actually dropped not increased, doesn't sends email if price goes up
 
             await sendMail(
               email,
