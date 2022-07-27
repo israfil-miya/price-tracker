@@ -17,7 +17,28 @@ export default function MyApp({
         crossOrigin="anonymous"
       />
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+        />
+
+        <meta name="application-name" content="PriceTracker" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="PriceTracker" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-config" content="none" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="msapplication-tap-highlight" content="no" />
+
+        <link rel="manifest" href="/manifest.json" />
+
+        <link rel="mask-icon" href="/favicon.png" color="#000000" />
+
+        <meta name="theme-color" content="#FFFFFF" />
+        <link rel="shortcut icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <meta name="apple-mobile-web-app-status-bar" content="#FFFFFF" />
         <meta
           name="google-site-verification"
           content="N5yaBrkTsit4CReULYsd6t2ZcIOni8qf011JimffZAg"
@@ -36,7 +57,7 @@ export default function MyApp({
         <meta name="language" content="English" />
         <meta name="revisit-after" content="2 days" />
         <meta name="author" content="Israfil Miya" />
-        <link rel="shortcut icon" href="/favicon.png" />
+
         <title>Price Tracker – An Open Source free Price Tracker website</title>
       </Head>
       <NextNProgress
