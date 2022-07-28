@@ -36,6 +36,6 @@ yarn-error.log*
 .vercel
 
 # pwa
-public/workbox-*.js
-public/fallback-*.js
-public/sw.js
+public/workbox*
+public/fallback*
+public/sw*
