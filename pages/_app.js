@@ -61,7 +61,7 @@ export default function MyApp({
         <title>Price Tracker – An Open Source free Price Tracker website</title>
       </Head>
       <NextNProgress
-        color="rgb(238,61,0)"
+        color="#4169e1"
         startPosition={0.3}
         stopDelayMs={200}
         height={1.5}
