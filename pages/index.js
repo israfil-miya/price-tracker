@@ -107,7 +107,7 @@ export default function Index({ faqs, feedbacks }) {
           <div className="about-prctkr-text px-3 text-wrap">
             An amazing website that can track the prices of your favourite items
             from your favourite e-shops like Amazon, Walmart, Target etc. for
-            free of cost! You can manage you items listed for monitoring, you
+            free of cost! You can manage your items listed for monitoring, you
             can remove an item from monitoring. There is a dashboard where you
             can see all your items listed for monitoring and other monitoring
             information such as current price of that item and other things.
