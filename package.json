@@ -19,7 +19,7 @@
     "@next-auth/mongodb-adapter": "^1.0.3",
     "moment": "^2.29.4",
     "mongodb": "^4.8.0",
-    "mongoose": "^6.4.4",
+    "mongoose": "^6.4.6",
     "next": "^12.2.4-canary.8",
     "next-auth": "^4.10.3",
     "next-pwa": "^5.5.4",
