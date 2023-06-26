@@ -1,23 +1,23 @@
 import NextAuth from 'next-auth'
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
-import GithubProvider from 'next-auth/providers/github'
+import GitHubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
-import clientPromise from '../../../lib/mongodb.js'
-
+import { MongooseAdapter } from '@choutkamartin/mongoose-adapter'
+const scopes = ['identify'].join(' ')
 export default NextAuth({
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: MongooseAdapter(process.env.MONGODB_URI),
   secret: process.env.SECRET,
   session: {
     jwt: true,
   },
   providers: [
-    GithubProvider({
+    GitHubProvider({
       clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+      clientSecret: process.env.GITHUB_SECRET
     }),
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
+      authorization: {params: {scope: scopes}},
     }),
     // ...add more providers here
   ],

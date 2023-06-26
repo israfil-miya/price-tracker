@@ -11,6 +11,7 @@ const Faqs = dynamic(() => import('../components/faqs'))
 const Feedbacks = dynamic(() => import('../components/feedbacks'))
 
 export async function getServerSideProps(context) {
+ 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/faqs`)
   const data = await res.json()
   const datasreturn = JSON.parse(JSON.stringify(data))
@@ -25,7 +26,9 @@ export async function getServerSideProps(context) {
       feedbacks: datasreturn2,
     },
   }
+
 }
+
 
 export default function Index({ faqs, feedbacks }) {
   const router = useRouter()

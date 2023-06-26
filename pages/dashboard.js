@@ -31,7 +31,7 @@ export async function getServerSideProps(context) {
   )
   const res2 = await rawres2.json()
   const datasreturn2 = JSON.parse(JSON.stringify(res2))
-  console.log(datasreturn2)
+  // console.log(datasreturn2)
 
   const rawres = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/items`, {
     method: 'POST',
@@ -43,7 +43,7 @@ export async function getServerSideProps(context) {
   })
   const res = await rawres.json()
   const datasreturn = JSON.parse(JSON.stringify(res))
-  console.log(datasreturn)
+  // console.log(datasreturn)
 
   return {
     props: {
@@ -104,7 +104,7 @@ export default function Dashboard({ items, configs }) {
     )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
-    console.log(datasreturn)
+    // console.log(datasreturn)
 
     if (datasreturn.success) {
       e.target.reset()
@@ -133,7 +133,7 @@ export default function Dashboard({ items, configs }) {
     )
     const res = await rawres.json()
     const datasreturn = JSON.parse(JSON.stringify(res))
-    console.log(datasreturn)
+    // console.log(datasreturn)
 
     if (datasreturn.success) {
       router.push('/dashboard?success=true')
