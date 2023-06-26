@@ -1,44 +1,64 @@
 import mongoose from 'mongoose'
-import * as dotenv from 'dotenv'
+import dotenv from 'dotenv'
+
 dotenv.config()
-try {
-  mongoose
-    .connect(process.env.MONGO_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useFindAndModify: false,
-      dbName: process.env.DB_NAME,
-    })
-    .then(() => console.log('DATABASE CONNECTION SUCCESSFUL !!!\n'))
-    .catch((err) => {
-      throw new Error(err)
-    })
-} catch (err) {
-  console.log(err)
+
+const connectionOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  dbName: process.env.DB_NAME,
+  poolSize: 10,
 }
 
-const ItemSchema = new mongoose.Schema({
-  item_name: String,
-  price_wanted: Number,
-  curr_price: Number,
-  website: String,
-  item_uri: String,
-  User_ID: String,
-  added_time: {
-    type: Date,
-    default: Date.now,
-  },
-})
+let connection
 
-const UserSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-})
+const connectToDatabase = async () => {
+  try {
+    connection = await mongoose.createConnection(
+      process.env.MONGO_URI,
+      connectionOptions,
+    )
 
-const Item = new mongoose.model('Item', ItemSchema)
-const User = new mongoose.model('User', UserSchema)
+    connection.on('connected', () => {
+      console.log('DATABASE CONNECTION SUCCESSFUL !!!\n')
+    })
 
-export default {
-  Item,
-  User,
+    connection.on('error', (err) => {
+      console.error('DATABASE CONNECTION ERROR:', err)
+    })
+
+    const itemSchema = new mongoose.Schema({
+      item_name: String,
+      price_wanted: Number,
+      curr_price: Number,
+      website: String,
+      item_uri: String,
+      User_ID: String,
+      added_time: {
+        type: Date,
+        default: Date.now,
+      },
+    })
+
+    const userSchema = new mongoose.Schema({
+      name: String,
+      email: String,
+      currency: String,
+      monitor_email: String,
+    })
+
+    const Item = connection.model('Item', itemSchema)
+    const User = connection.model('User', userSchema)
+
+    return {
+      Item,
+      User,
+    }
+  } catch (error) {
+    console.error('DATABASE CONNECTION ERROR:', error)
+    throw new Error('Failed to connect to the database.')
+  }
 }
+
+export default connectToDatabase

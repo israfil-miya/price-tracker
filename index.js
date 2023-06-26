@@ -1,166 +1,91 @@
-import getprice from 'eshop-scraper'
-import * as dotenv from 'dotenv'
-dotenv.config()
-import nodemailer from 'nodemailer'
-import db from './db.js'
-import htmlTamplate from './email_html_tamplate.js'
-//
-async function sendMail(
-  email,
-  name,
-  item_name,
-  itemsCurrentInfo,
-  price_wanted,
-  website,
-  item_uri,
-  currency,
-  prev_price,
-) {
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD,
-    },
-  })
-  //
-  let info = await transporter.sendMail({
-    from: '"Price Tracker" ' + '<' + process.env.EMAIL + '>',
-    to: email,
-    subject: 'Price Tracker – ' + item_name,
-    html: htmlTamplate(
-      name,
-      item_name,
-      itemsCurrentInfo.price,
-      price_wanted,
-      website,
-      item_uri,
-      currency,
-      prev_price,
-    ),
-  })
-}
-//
-var counter = 0
-async function updates_checker() {
-  const data = await db.Item.find()
-  await Promise.all(
-    data.map(async (item, i) => {
-      //
-      const UserData = await db.User.findById(item.User_ID)
-      //
-      if (!UserData) return
-      //
-      var item_name = item.item_name
-      var curr_price = item.curr_price
-      let prev_price = item.curr_price
-      let price_wanted = item.price_wanted
-      var item_uri = item.item_uri
-      let currency = UserData.currency || 'USD'
-      var website = item.website
-      let email = UserData.monitor_email || UserData.email
-      let name = UserData.name
-      //
-      const itemsCurrentInfo = await getprice(item_uri, currency)
-      //
-      if (itemsCurrentInfo.price && !itemsCurrentInfo.IsError) {
-        //
-        if (itemsCurrentInfo.price != curr_price) {
-          //
-          let newData = await db.Item.findByIdAndUpdate(
-            item._id,
-            {
-              curr_price: itemsCurrentInfo.price,
-              item_name: itemsCurrentInfo.name,
-              website: itemsCurrentInfo.site,
-            },
-            {
-              new: true,
-            },
-          )
-          //
-          const changeObj = {
-            serial_no: i,
-            change: "Item's new price",
-          }
-          let finalData = []
-          finalData.push(newData)
-          finalData.push(changeObj)
-          console.log(finalData)
-          //
-          curr_price = newData.curr_price
-          item_name = newData.item_name
-          website = newData.website
-          //
-          if (
-            itemsCurrentInfo.price <= price_wanted &&
-            prev_price > curr_price
-          ) {
-            // sends email informing the user that price is lower than his wanted price and ensure that price actually dropped not increased, doesn't sends email if price goes up
+import os from 'os';
+import pkg from 'mongodb';
+import { fileURLToPath } from 'url'
+import connectToDatabase from './db.js';
+import { Worker, isMainThread, workerData, parentPort } from 'worker_threads';
+import checkAndUpdateItem from './item.js';
 
-            await sendMail(
-              email,
-              name,
-              item_name,
-              itemsCurrentInfo,
-              price_wanted,
-              website,
-              item_uri,
-              currency,
-              prev_price,
-            )
-            console.log({
-              email_sent: 'An email has been sent to ' + email,
-            })
-          }
-          //
-          return
+const { ObjectId } = pkg;
+const __filename = fileURLToPath(import.meta.url)
+
+const runPriceTracking = async (db, items) => {
+  try {
+    for (const item of items) {
+      await checkAndUpdateItem(db, new ObjectId(Buffer.from(item._id.id).toString('hex')).toString());
+    }
+  } catch (error) {
+    console.error(`Error running price tracking: ${error.message}`);
+    // Add error handling and recovery mechanism here if desired
+  }
+};
+
+const startPriceTracking = async () => {
+  try {
+    const db = await connectToDatabase();
+    
+    const batchSize = parseInt(process.env.BATCH_SIZE); // Adjust the batch size as per your system's capacity
+    let skip = 0;
+    
+    while (true) {
+      const items = await db.Item.find().skip(skip).limit(batchSize).lean();
+
+      if (items.length === 0) {
+        if (!skip) console.log('No items found for price tracking');
+        else {
+          skip = 0
+          console.log('No more items found in this batch for price tracking');
         }
-        //
-      } else if (
-        itemsCurrentInfo.IsError &&
-        item_uri != 'https://price-tracker-ivory.vercel.app/404'
-      ) {
-        //
-        let newData = await db.Item.findByIdAndUpdate(
-          item._id,
-          {
-            item_uri: 'https://price-tracker-ivory.vercel.app/404',
-          },
-          {
-            new: true,
-          },
-        )
-        //
-        const changeObj = {
-          serial_no: i,
-          change: 'Unknown website error',
-        }
-        let finalData = []
-        finalData.push(newData)
-        finalData.push(changeObj)
-        console.log(finalData)
-        //
-        item_uri = newData.item_uri
-        //
+        continue
       }
-      //
-    }),
-  )
-  //
+
+      const numThreads = Math.min(items.length, os.cpus().length);
+      const itemsPerThread = Math.ceil(items.length / numThreads);
+
+      console.log(`Starting price tracking for ${items.length} items using ${numThreads} threads...`);
+
+      const workers = [];
+
+      for (let i = 0; i < numThreads; i++) {
+        const start = i * itemsPerThread;
+        const end = start + itemsPerThread;
+        const threadItems = items.slice(start, end);
+
+        const worker = new Worker(__filename, { workerData: threadItems });
+        workers.push(worker);
+
+        worker.on('exit', (code) => {
+          if (code !== 0) {
+            console.error(`Price tracking worker stopped with exit code ${code}`);
+          }
+        });
+      }
+
+      console.log('Price tracking workers started');
+
+      await Promise.all(workers.map((worker) => new Promise((resolve, reject) => {
+        worker.on('message', resolve);
+        worker.on('error', reject);
+      })));
+
+      skip += batchSize;
+      console.log('Price tracking workers completed');
+
+      await new Promise((resolve) => setTimeout(resolve, parseInt(process.env.INTERVAL_TIME_IN_MS)));
+    }
+  } catch (error) {
+    console.error(`Error starting price tracking: ${error.message}`);
+    // Add error handling and recovery mechanism here if desired
+  }
+};
+
+if (isMainThread) {
+  startPriceTracking().catch((error) => {
+    console.error(`Error in main thread: ${error.message}`);
+    // Add error handling and recovery mechanism here if desired
+  });
+} else {
+  const threadItems = workerData;
+  const db = await connectToDatabase();
+  await runPriceTracking(db, threadItems);
+  parentPort.postMessage('Worker completed');
 }
-;(async function main_func() {
-  if (counter == 0) console.log('ENGINE STARTED !!!\n')
-  //
-  if (counter != 0) console.log('\n')
-  await updates_checker()
-  //
-  counter++
-  console.log('\nLOOP DONE !!!')
-  console.log('LOOP COUNTER: ' + counter)
-  // Loop this (main_func) function repeatedly after set number of time
-  setTimeout(main_func, process.env.INTERVAL_TIME_IN_SEC * 1000)
-})()
-//
-//
