@@ -3,9 +3,7 @@ import Link from 'next/link'
 import { getSession, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useClipboard } from 'use-clipboard-copy'
-import Tooltip from 'react-tooltip-lite'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import toast, { Toaster } from 'react-hot-toast'
 import Script from 'next/script'
 
 export async function getServerSideProps(context) {
@@ -145,7 +143,7 @@ export default function Dashboard({ items, configs }) {
   }
   return (
     <div>
-      <ToastContainer />
+      <Toaster position="top-right" reverseOrder={true} />
 
       <div className="container text-break text-wrap my-4 p-2 bg-light">
         <div className="text-center">
@@ -175,23 +173,15 @@ export default function Dashboard({ items, configs }) {
                     <tr key={index}>
                       <th scope="row">{index}</th>
                       <td>
-                        <Tooltip
-                          color="white"
-                          arrowSize={5}
-                          useHover={false}
-                          eventOn="onClick"
-                          eventOff="onMouseOut"
-                          padding={4}
-                          background="#272727"
-                          content="Copied!"
+                        <button
+                          className="btn btn-sm btn-outline-primary"
+                          onClick={() => {
+                            clipboard.copy(item._id)
+                            toast('Copied!')
+                          }}
                         >
-                          <button
-                            className="btn btn-sm btn-outline-primary"
-                            onClick={() => clipboard.copy(item._id)}
-                          >
-                            Copy
-                          </button>
-                        </Tooltip>
+                          Copy
+                        </button>
                       </td>
                       <td>{item.item_name}</td>
                       <td>{item.website}</td>

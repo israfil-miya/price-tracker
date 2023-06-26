@@ -1,8 +1,7 @@
 import { useSession, signIn, signOut, getSession } from 'next-auth/react'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function Feedback() {
   const router = useRouter()
@@ -88,7 +87,7 @@ export default function Feedback() {
 
   return (
     <>
-      <ToastContainer />
+      <Toaster position="top-right" reverseOrder={true} />
 
       <div className="wrapper my-4">
         <div className="container p-3 bg-light">

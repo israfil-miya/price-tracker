@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import toast, { Toaster } from 'react-hot-toast'
 import { useSession, getSession } from 'next-auth/react'
 
 // fake-authentic checking
@@ -132,7 +131,7 @@ export default function Item_manage() {
   }
   return (
     <div>
-      <ToastContainer />
+      <Toaster position="top-right" reverseOrder={true} />
 
       <div className="container text-break text-wrap my-4 p-2 bg-light">
         <div className="text-center">

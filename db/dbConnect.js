@@ -1,22 +1,22 @@
 import mongoose from 'mongoose'
 
 const dbConnect = () => {
-  if (mongoose.connections[0].readyState) {
-    //console.log('Already connected.')
-    return
-  }
+  try {
+    if (mongoose.connections[0].readyState) {
+      // console.log('Already connected.')
+      return
+    }
 
-  mongoose.connect(
-    process.env.MONGODB_URI,
-    {
+    mongoose.set('strictQuery', false)
+    mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    },
-    (err) => {
-      if (err) throw err
-      console.log('Connected to mongodb.')
-    },
-  )
+      maxPoolSize: 10,
+    })
+    console.log('Connected to Mongo Successfully!')
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export default dbConnect

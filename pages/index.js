@@ -2,10 +2,9 @@ import Link from 'next/link'
 import { useSession, getSession } from 'next-auth/react'
 import TypeMe, { Delay, LineBreak, Delete } from 'react-typeme'
 import { useRouter } from 'next/router'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 import { useState, useEffect } from 'react'
 import useInView from 'react-cool-inview'
+import toast, { Toaster } from 'react-hot-toast'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 const Faqs = dynamic(() => import('../components/faqs'))
@@ -66,8 +65,7 @@ export default function Index({ faqs, feedbacks }) {
 
   return (
     <>
-      <ToastContainer />
-
+      <Toaster position="top-right" reverseOrder={true} />
       <div className="overflow-hidden container my-4 p-2 bg-light">
         <div className="d-flex mt-4 flex-column justify-content-center align-items-center">
           <Image

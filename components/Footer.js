@@ -7,7 +7,7 @@ export default function footer() {
         Made by{' '}
         <span style={{ color: 'rgb(238,61,0)' }}>
           <Link href="https://github.com/GitPro10">
-            <a>Jubayer Ahmed</a>
+            <a>Israfil Miya</a>
           </Link>
         </span>{' '}
         ~ (2021 — {moment().year()})

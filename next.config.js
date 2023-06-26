@@ -1,14 +1,13 @@
-const withPWA = require('next-pwa')
-
-module.exports = withPWA({
-  pwa: {
-    dest: 'public',
-    disable: process.env.NODE_ENV === 'development',
-    fallbacks: {
-      image: '/static/images/me.png',
-      font: '/static/font/Poppins-Regular.ttf',
-    },
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+  fallbacks: {
+    image: '/static/images/me.png',
+    font: '/static/font/Poppins-Regular.ttf',
   },
+})
+
+const nextConfig = withPWA({
   images: {
     domains: [
       'platform-lookaside.fbsbx.com',
@@ -18,3 +17,5 @@ module.exports = withPWA({
   },
   reactStrictMode: true,
 })
+
+module.exports = nextConfig

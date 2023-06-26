@@ -1,6 +1,6 @@
 export default function handle(req, res) {
   res.status(200).json({
-    author: 'Jubayer Ahmed',
+    author: 'Israfil Miya',
     project_github: 'https://github.com/GitPro10/price-tracker',
     routes: [
       {
