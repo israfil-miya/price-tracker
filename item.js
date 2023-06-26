@@ -1,4 +1,4 @@
-import EshopScraper from '../eshop-scraper/main.js';
+import EshopScraper from 'eshop-scraper';
 import currencyConvert from "./currency.js"
 import sendMail from "./email.js"
 
