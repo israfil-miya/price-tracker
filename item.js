@@ -30,6 +30,8 @@ const checkAndUpdateItem = async (db, itemId) => {
     let itemsCurrentInfo = await scraper.getData(item_uri);
 
     if (!itemsCurrentInfo || itemsCurrentInfo.IsError) {
+      console.error(`Website fetch error for item ${item._id}`);
+      /*
       if (item_name !== "Error fetching the website") {
         await db.Item.updateOne(
           { _id: item._id },
@@ -39,10 +41,12 @@ const checkAndUpdateItem = async (db, itemId) => {
             },
           }
         );
-
-        console.error(`Website fetch error for item ${item._id}`);
+        
       }
+      return;
+      */
     }
+    
     if(currency!=itemsCurrentInfo.currency) {
       let conversion = await currencyConvert(
         itemsCurrentInfo.price,
