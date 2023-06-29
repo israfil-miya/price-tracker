@@ -42,7 +42,6 @@ const checkAndUpdateItem = async (db, itemId) => {
 
         console.error(`Website fetch error for item ${item._id}`);
       }
-      return;
     }
     if(currency!=itemsCurrentInfo.currency) {
       let conversion = await currencyConvert(
