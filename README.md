@@ -6,7 +6,7 @@
 
 Price-Tacker is a free service that can track your favourite items from your various favorite E-Shop websites like Amazon, Ebags etc. This can also track Apps and Games from Google Play Store, Stream, Nintendo etc.<br/><br/>
 
-> **Not exciting enough to use this?**<br/> _— Well it also send you emails whenever price goes down._<br/><br/>
+> **Not exciting enough to use this?**<br/> _— Well it also sends you emails whenever price goes down._<br/><br/>
 
 ## Branch
 

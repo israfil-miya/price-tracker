@@ -22,8 +22,9 @@ const runPriceTracking = async (db, items) => {
 const startPriceTracking = async () => {
   try {
     const db = await connectToDatabase();
+
+    let batchSize = parseInt(process.env.BATCH_SIZE);
     
-    const batchSize = parseInt(process.env.BATCH_SIZE); // Adjust the batch size as per your system's capacity
     let skip = 0;
     
     while (true) {
